@@ -1,0 +1,35 @@
+﻿<Window x:Class="pactometro.DataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pactometro"
+        mc:Ignorable="d"
+        Title="Ventana de datos" Height="450" Width="800">
+    <Grid Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ListView Name="upperTable" Grid.Row="0" Margin="20" SelectionChanged="upperTable_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ELECCIONES" DisplayMemberBinding="{Binding nombreEleccion}"/>
+                    <GridViewColumn Header="Fecha" DisplayMemberBinding="{Binding fecha}"/>
+                    <GridViewColumn Header="Número de escaños" DisplayMemberBinding="{Binding totalEscanios}"/>
+                    <GridViewColumn Header="Mayoría absoluta" DisplayMemberBinding="{Binding mayoriaAbs}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView Name="lowerTable" Grid.Row="2" Margin="20">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Partidos" DisplayMemberBinding="{Binding nombre}"/>
+                    <GridViewColumn Header="Escaños" DisplayMemberBinding="{Binding escanios}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>
