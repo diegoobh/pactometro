@@ -1,7 +1,7 @@
 ﻿/*
  * Diego Borrallo Herrero
  * diegobh@usal.es
- * Práctica EL PACTÓmETRO 2023
+ * Práctica EL PACTÓMETRO 2023
 */
 
 
@@ -66,6 +66,12 @@ namespace pactometro
             mainWindow.Close(); 
         }
 
+        private void vistaDatos_Click(object sender, RoutedEventArgs e)
+        {
+            DataWindow ventanaDatos = new DataWindow(); 
+            ventanaDatos.Show();
+        }
+
 
 
         /*
@@ -103,7 +109,7 @@ namespace pactometro
                 TextBlock label = new TextBlock
                 {
                     Text = partidos[i],
-                    Foreground = Brushes.White,
+                    Foreground = Brushes.Black,
                     TextAlignment = TextAlignment.Center,
                     Margin = new Thickness(x, pnlResultados.ActualHeight - espaciado, 0, 0),
                     Width = anchoBarra,
@@ -114,6 +120,6 @@ namespace pactometro
 
             
         }*/
-        
+
     }
 }

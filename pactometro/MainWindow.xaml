@@ -19,6 +19,7 @@
                     <MenuItem Header="_Vista1" Click="vista1_Click"/>
                     <MenuItem Header="_Vista2" Click="vista2_Click"/>
                     <MenuItem Header="_Vista3" Click="vista3_Click"/>
+                    <MenuItem Header="_Ventana de datos" Click="vistaDatos_Click"/>
                     <Separator/>
                     <MenuItem Header="_Salir" Click="salir_Click"/>
                 </MenuItem>

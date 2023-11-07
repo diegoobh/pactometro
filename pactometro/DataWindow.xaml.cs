@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Diego Borrallo Herrero
+ * diegobh@usal.es
+ * Práctica EL PACTÓMETRO 2023
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
