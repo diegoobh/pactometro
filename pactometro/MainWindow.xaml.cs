@@ -26,13 +26,14 @@ namespace pactometro
     public partial class MainWindow : Window
     {
         DataWindow ventana2;
+        public bool cerrarVentana2 = false; 
 
         public MainWindow()
         {
             InitializeComponent();
             ventana2 = new DataWindow();
-            ventana2.Show(); //segunda ventana en modo no modal 
-            
+            ventana2.Closing += ventana2_Closing; //añadimos nuestro propio método closing para la ventana de datos
+            ventana2.Show(); //segunda ventana en modo no modal  
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -60,16 +61,40 @@ namespace pactometro
 
         }
 
-        private void salir_Click(object sender, RoutedEventArgs e)
+        public void salir_Click(object sender, RoutedEventArgs e)
         {
-               ventana2.Close();
-               mainWindow.Close(); 
+            mainWindow.Close();
+            ventana2.Close();     
         }
 
         private void vistaDatos_Click(object sender, RoutedEventArgs e)
         {
 
-            ventana2.Show();
+            if (ventana2 == null || !ventana2.IsVisible ) //si no existe o no está visible instanciamos una nueva ventana
+            {
+                ventana2 = new DataWindow();
+                ventana2.Closed += (s, args) => { cerrarVentana2 = false; };
+            }
+
+                ventana2.Show();
+                ventana2.Focus();
+        }
+
+        private void ventana2_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (cerrarVentana2)
+            {
+                e.Cancel = true; //para poder esconder la ventana sin llegar a cerrarla 
+                ventana2.Hide();
+            } else
+            {
+                e.Cancel = false; //para poder cerrar la ventana de datos y que no se nos quede el proceso abierto
+            }
+        }
+
+        private void mainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            cerrarVentana2 = true; 
         }
 
 

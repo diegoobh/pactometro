@@ -5,13 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pactometro"
         mc:Ignorable="d"
-        Title="Ventana de datos" Height="450" Width="800" Closing="Window_Closing">
+        Title="Ventana de datos" Height="450" Width="800">
     <Grid Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView Name="upperTable" Grid.Row="0" Margin="20" SelectionChanged="upperTable_SelectionChanged">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView Name="upperTable" Grid.Row="0" Grid.ColumnSpan="3" Margin="20" SelectionChanged="upperTable_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ELECCIONES" DisplayMemberBinding="{Binding nombreEleccion}"/>
@@ -22,7 +29,9 @@
             </ListView.View>
         </ListView>
 
-        <ListView Name="lowerTable" Grid.Row="2" Margin="20">
+        <Button Name="btnAñadir" Grid.Column="1" Grid.Row="1" Margin="10" Width="100" Height="20" Content="Añadir elección" Click="btnAñadir_Click"/>
+
+        <ListView Name="lowerTable" Grid.Row="2" Grid.ColumnSpan="3" Margin="20">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Partidos" DisplayMemberBinding="{Binding nombre}"/>
