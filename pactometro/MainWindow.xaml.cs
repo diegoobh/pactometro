@@ -62,14 +62,14 @@ namespace pactometro
 
         private void salir_Click(object sender, RoutedEventArgs e)
         {
-            ventana2.Close();
-            mainWindow.Close(); 
+               ventana2.Close();
+               mainWindow.Close(); 
         }
 
         private void vistaDatos_Click(object sender, RoutedEventArgs e)
         {
-            DataWindow ventanaDatos = new DataWindow(); 
-            ventanaDatos.Show();
+
+            ventana2.Show();
         }
 
 

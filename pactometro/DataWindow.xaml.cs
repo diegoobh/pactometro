@@ -215,5 +215,12 @@ namespace pactometro
                 
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true; //poniendo a true la propiedad cancel del evento Closing impedimos que se cierre la ventana
+
+            Hide(); 
+        }
     }
 }
