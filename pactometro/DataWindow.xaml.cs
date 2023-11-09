@@ -216,7 +216,8 @@ namespace pactometro
 
         private void btnAñadir_Click(object sender, RoutedEventArgs e)
         {
-            
+            FormularioEleccion form = new FormularioEleccion();
+            form.ShowDialog();
         }
     }
 }

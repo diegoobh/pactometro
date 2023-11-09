@@ -17,7 +17,7 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
+
         <ListView Name="upperTable" Grid.Row="0" Grid.ColumnSpan="3" Margin="20" SelectionChanged="upperTable_SelectionChanged">
             <ListView.View>
                 <GridView>
