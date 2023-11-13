@@ -69,20 +69,19 @@ namespace pactometro
 
         private void vistaDatos_Click(object sender, RoutedEventArgs e)
         {
-
-            if (ventana2 == null || !ventana2.IsVisible ) //si no existe o no está visible instanciamos una nueva ventana
+            if (ventana2 == null) //si no existe o no está visible instanciamos una nueva ventana
             {
                 ventana2 = new DataWindow();
-                ventana2.Closed += (s, args) => { cerrarVentana2 = false; };
+                ventana2.Closed += (s, args) => { cerrarVentana2 = false; }; //operador lambda, pasamos el sender y los argumentos
             }
 
-                ventana2.Show();
-                ventana2.Focus();
+            ventana2.Show();
+            ventana2.Focus();
         }
 
         private void ventana2_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (cerrarVentana2)
+            if (!cerrarVentana2)
             {
                 e.Cancel = true; //para poder esconder la ventana sin llegar a cerrarla 
                 ventana2.Hide();
@@ -94,10 +93,9 @@ namespace pactometro
 
         private void mainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            cerrarVentana2 = true; 
+            cerrarVentana2 = true;
+            ventana2.Close(); 
         }
-
-
 
         /*
         private void mostrarPorDefecto() //ajustar al tamaño del canvas

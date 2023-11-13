@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -29,7 +29,8 @@
             </ListView.View>
         </ListView>
 
-        <Button Name="btnAñadir" Grid.Column="1" Grid.Row="1" Margin="10" Width="100" Height="20" Content="Añadir elección" Click="btnAñadir_Click"/>
+        <Button Name="btnAñadir" Grid.Column="1" Grid.Row="1" Margin="10" Width="100" Height="20" Content="Añadir elección" HorizontalAlignment="Left" Click="btnAñadir_Click"/>
+        <Button Name="btnEliminar" Content="Eliminar elección" Grid.Column="1" Grid.Row="1" Margin="10" Width="100" Background="LightCoral" HorizontalAlignment="Right" Click="btnEliminar_Click"/>
 
         <ListView Name="lowerTable" Grid.Row="2" Grid.ColumnSpan="3" Margin="20">
             <ListView.View>

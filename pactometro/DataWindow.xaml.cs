@@ -42,7 +42,7 @@ namespace pactometro
             elecciones[0].fecha = DateTime.Parse("23/07/2023");
             elecciones[0].totalEscanios = 350;
             elecciones[0].mayoriaAbs = 176;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 11; i++)
             {
                 elecciones[0].listaPartidos.Add(new Partido());
 
@@ -55,7 +55,7 @@ namespace pactometro
             elecciones[0].listaPartidos[1].color = "Red";
             elecciones[0].listaPartidos[2].nombre = "VOX";
             elecciones[0].listaPartidos[2].escanios = 33;
-            elecciones[0].listaPartidos[2].color = "Green";
+            elecciones[0].listaPartidos[2].color = "lightGreen";
             elecciones[0].listaPartidos[3].nombre = "SUMAR";
             elecciones[0].listaPartidos[3].escanios = 31;
             elecciones[0].listaPartidos[3].color = "Pink";
@@ -64,30 +64,42 @@ namespace pactometro
             elecciones[0].listaPartidos[4].color = "Orange";
             elecciones[0].listaPartidos[5].nombre = "JUNTS";
             elecciones[0].listaPartidos[5].escanios = 7;
-            elecciones[0].listaPartidos[5].color = "lightGreen";
+            elecciones[0].listaPartidos[5].color = "lightBlue";
             elecciones[0].listaPartidos[6].nombre = "EH BILDU";
             elecciones[0].listaPartidos[6].escanios = 6;
-            elecciones[0].listaPartidos[6].color = "Aquamarine";
+            elecciones[0].listaPartidos[6].color = "lightGreen";
+            elecciones[0].listaPartidos[7].nombre = "EAJ_PNV";
+            elecciones[0].listaPartidos[7].escanios = 5;
+            elecciones[0].listaPartidos[7].color = "Green";
+            elecciones[0].listaPartidos[8].nombre = "BNG";
+            elecciones[0].listaPartidos[8].escanios = 1;
+            elecciones[0].listaPartidos[8].color = "LightSkyBlue";
+            elecciones[0].listaPartidos[9].nombre = "CCA";
+            elecciones[0].listaPartidos[9].escanios = 1;
+            elecciones[0].listaPartidos[9].color = "SkyBlue";
+            elecciones[0].listaPartidos[10].nombre = "UPN";
+            elecciones[0].listaPartidos[10].escanios = 1;
+            elecciones[0].listaPartidos[10].color = "DarkRed";
 
             elecciones[1].nombreEleccion = "Elecciones Generales 10-11-2019";
             elecciones[1].fecha = DateTime.Parse("10/11/2019");
             elecciones[1].totalEscanios = 350;
             elecciones[1].mayoriaAbs = 176;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 14; i++)
             {
                 elecciones[1].listaPartidos.Add(new Partido());
 
             }
-            elecciones[1].listaPartidos[0].nombre = "PP";
-            elecciones[1].listaPartidos[0].escanios = 89;
-            elecciones[1].listaPartidos[0].color = "Blue";
-            elecciones[1].listaPartidos[1].nombre = "PSOE";
-            elecciones[1].listaPartidos[1].escanios = 120;
-            elecciones[1].listaPartidos[1].color = "Red";
+            elecciones[1].listaPartidos[0].nombre = "PSOE";
+            elecciones[1].listaPartidos[0].escanios = 120;
+            elecciones[1].listaPartidos[0].color = "Red";
+            elecciones[1].listaPartidos[1].nombre = "PP";
+            elecciones[1].listaPartidos[1].escanios = 89;
+            elecciones[1].listaPartidos[1].color = "Blue";
             elecciones[1].listaPartidos[2].nombre = "VOX";
             elecciones[1].listaPartidos[2].escanios = 52;
-            elecciones[1].listaPartidos[2].color = "Green";
-            elecciones[1].listaPartidos[3].nombre = "UNIDAS PODEMOS";
+            elecciones[1].listaPartidos[2].color = "LightGreen";
+            elecciones[1].listaPartidos[3].nombre = "PODEMOS";
             elecciones[1].listaPartidos[3].escanios = 26;
             elecciones[1].listaPartidos[3].color = "Purple";
             elecciones[1].listaPartidos[4].nombre = "ERC";
@@ -98,13 +110,34 @@ namespace pactometro
             elecciones[1].listaPartidos[5].color = "DarkOrange";
             elecciones[1].listaPartidos[6].nombre = "JUNTS";
             elecciones[1].listaPartidos[6].escanios = 8;
-            elecciones[1].listaPartidos[6].color = "Aquamarine";
+            elecciones[1].listaPartidos[6].color = "Pink";
+            elecciones[1].listaPartidos[7].nombre = "EAJ_PNV";
+            elecciones[1].listaPartidos[7].escanios = 6;
+            elecciones[1].listaPartidos[7].color = "Green";
+            elecciones[1].listaPartidos[8].nombre = "EH BILDU";
+            elecciones[1].listaPartidos[8].escanios = 5;
+            elecciones[1].listaPartidos[8].color = "LightGreen";
+            elecciones[1].listaPartidos[9].nombre = "MASPAIS";
+            elecciones[1].listaPartidos[9].escanios = 3;
+            elecciones[1].listaPartidos[9].color = "Aqua";
+            elecciones[1].listaPartidos[10].nombre = "CUP_PR";
+            elecciones[1].listaPartidos[10].escanios = 2;
+            elecciones[1].listaPartidos[10].color = "Yellow";
+            elecciones[1].listaPartidos[11].nombre = "CCA";
+            elecciones[1].listaPartidos[11].escanios = 2;
+            elecciones[1].listaPartidos[11].color = "LightOrange";
+            elecciones[1].listaPartidos[12].nombre = "BNG";
+            elecciones[1].listaPartidos[12].escanios = 1;
+            elecciones[1].listaPartidos[12].color = "LightSkyBlue";
+            elecciones[1].listaPartidos[13].nombre = "OTROS";
+            elecciones[1].listaPartidos[13].escanios = 4;
+            elecciones[1].listaPartidos[13].color = "Black";
 
             elecciones[2].nombreEleccion = "Autonómicas Comunidad de CASTILLA y LEÓN 14-02-2022";
             elecciones[2].fecha = DateTime.Parse("14/02/2022");
             elecciones[2].totalEscanios = 81;
             elecciones[2].mayoriaAbs = 41;
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 8; i++)
             {
                 elecciones[2].listaPartidos.Add(new Partido());
 
@@ -130,7 +163,10 @@ namespace pactometro
             elecciones[2].listaPartidos[6].nombre = "CIUDADANOS";
             elecciones[2].listaPartidos[6].escanios = 1;
             elecciones[2].listaPartidos[6].color = "DarkOrange";
-            
+            elecciones[2].listaPartidos[7].nombre = "XAV";
+            elecciones[2].listaPartidos[7].escanios = 1;
+            elecciones[2].listaPartidos[7].color = "LightOrange";
+
 
             elecciones[3].nombreEleccion = "Autonómicas Comunidad de CASTILLA y LEÓN 26-05-2019";
             elecciones[3].fecha = DateTime.Parse("26/05/2019");
@@ -147,21 +183,21 @@ namespace pactometro
             elecciones[3].listaPartidos[1].nombre = "PSOE";
             elecciones[3].listaPartidos[1].escanios = 35;
             elecciones[3].listaPartidos[1].color = "Red";
-            elecciones[3].listaPartidos[2].nombre = "VOX";
-            elecciones[3].listaPartidos[2].escanios = 1;
-            elecciones[3].listaPartidos[2].color = "Green";
-            elecciones[3].listaPartidos[3].nombre = "UPL";
-            elecciones[3].listaPartidos[3].escanios = 1;
-            elecciones[3].listaPartidos[3].color = "DarkMagenta";
-            elecciones[3].listaPartidos[4].nombre = "XAV";
+            elecciones[3].listaPartidos[2].nombre = "CIUDADANOS";
+            elecciones[3].listaPartidos[2].escanios = 12;
+            elecciones[3].listaPartidos[2].color = "DarkOrange";
+            elecciones[3].listaPartidos[3].nombre = "PODEMOS-IU";
+            elecciones[3].listaPartidos[3].escanios = 2;
+            elecciones[3].listaPartidos[3].color = "Black";
+            elecciones[3].listaPartidos[4].nombre = "UPL";
             elecciones[3].listaPartidos[4].escanios = 1;
-            elecciones[3].listaPartidos[4].color = "Black";
-            elecciones[3].listaPartidos[5].nombre = "PODEMOS-IU";
-            elecciones[3].listaPartidos[5].escanios = 2;
+            elecciones[3].listaPartidos[4].color = "DarkMagenta";
+            elecciones[3].listaPartidos[5].nombre = "XAV";
+            elecciones[3].listaPartidos[5].escanios = 1;
             elecciones[3].listaPartidos[5].color = "Purple";
-            elecciones[3].listaPartidos[6].nombre = "CIUDADANOS";
-            elecciones[3].listaPartidos[6].escanios = 12;
-            elecciones[3].listaPartidos[6].color = "DarkOrange";
+            elecciones[3].listaPartidos[6].nombre = "VOX";
+            elecciones[3].listaPartidos[6].escanios = 1;
+            elecciones[3].listaPartidos[6].color = "Green";
 
             elecciones[4].nombreEleccion = "Autonómicas Comunidad de CASTILLA y LEÓN 24-05-2015";
             elecciones[4].fecha = DateTime.Parse("24/05/2015");
@@ -178,18 +214,18 @@ namespace pactometro
             elecciones[4].listaPartidos[1].nombre = "PSOE";
             elecciones[4].listaPartidos[1].escanios = 25;
             elecciones[4].listaPartidos[1].color = "Red";
-            elecciones[4].listaPartidos[2].nombre = "CIUDADANOS";
-            elecciones[4].listaPartidos[2].escanios = 5;
-            elecciones[4].listaPartidos[2].color = "DarkOrange";
-            elecciones[4].listaPartidos[3].nombre = "UPL";
-            elecciones[4].listaPartidos[3].escanios = 3;
-            elecciones[4].listaPartidos[3].color = "DarkMagenta";
-            elecciones[4].listaPartidos[4].nombre = "IU-EQUO";
-            elecciones[4].listaPartidos[4].escanios = 1;
-            elecciones[4].listaPartidos[4].color = "Black";
-            elecciones[4].listaPartidos[5].nombre = "PODEMOS";
-            elecciones[4].listaPartidos[5].escanios = 10;
-            elecciones[4].listaPartidos[5].color = "Purple";
+            elecciones[4].listaPartidos[2].nombre = "PODEMOS";
+            elecciones[4].listaPartidos[2].escanios = 10;
+            elecciones[4].listaPartidos[2].color = "Purple";
+            elecciones[4].listaPartidos[3].nombre = "CIUDADANOS";
+            elecciones[4].listaPartidos[3].escanios = 5;
+            elecciones[4].listaPartidos[3].color = "DarkOrange";
+            elecciones[4].listaPartidos[4].nombre = "UPL";
+            elecciones[4].listaPartidos[4].escanios = 3;
+            elecciones[4].listaPartidos[4].color = "DarkMagenta";
+            elecciones[4].listaPartidos[5].nombre = "IU-EQUO";
+            elecciones[4].listaPartidos[5].escanios = 1;
+            elecciones[4].listaPartidos[5].color = "Black";
 
 
 
@@ -208,16 +244,25 @@ namespace pactometro
                 for(int i = 0; i < amig2.listaPartidos.Count; i++)
                 {
                     lowerTable.Items.Add(amig2.listaPartidos[i]); //añadimos a la tabla inferior solo el nombre y los escaños de los partidos de la elección seleccionada
-                }
-                
-                
+                }        
             }
         }
 
         private void btnAñadir_Click(object sender, RoutedEventArgs e)
         {
-            FormularioEleccion form = new FormularioEleccion();
+            CdPartidos form = new CdPartidos();
+            form.Owner = this;
             form.ShowDialog();
+        }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            if(upperTable.SelectedItem != null)
+            {
+                upperTable.Items.RemoveAt(upperTable.SelectedIndex); 
+            }
+            upperTable.Items.Refresh();
+            lowerTable.Items.Clear();  
         }
     }
 }

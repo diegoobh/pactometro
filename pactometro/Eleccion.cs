@@ -42,5 +42,10 @@ namespace pactometro
         {
             return nombreEleccion + " " + fecha + " " + totalEscanios + " " + mayoriaAbs;
         }
+
+        internal int calculaMayoria(int totalEscanios)
+        {
+            return (totalEscanios / 2) + 1; 
+        }
     }
 }
