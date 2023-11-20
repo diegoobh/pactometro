@@ -179,12 +179,12 @@ namespace pactometro
                 elecciones[3].listaPartidos.Add(new Partido());
 
             }
-            elecciones[3].listaPartidos[0].nombre = "PP";
-            elecciones[3].listaPartidos[0].votos = 29;
-            elecciones[3].listaPartidos[0].color = "Blue";
-            elecciones[3].listaPartidos[1].nombre = "PSOE";
-            elecciones[3].listaPartidos[1].votos = 35;
-            elecciones[3].listaPartidos[1].color = "Red";
+            elecciones[3].listaPartidos[0].nombre = "PSOE";
+            elecciones[3].listaPartidos[0].votos = 35;
+            elecciones[3].listaPartidos[0].color = "Red";
+            elecciones[3].listaPartidos[1].nombre = "PP";
+            elecciones[3].listaPartidos[1].votos = 29;
+            elecciones[3].listaPartidos[1].color = "Blue";
             elecciones[3].listaPartidos[2].nombre = "CIUDADANOS";
             elecciones[3].listaPartidos[2].votos = 12;
             elecciones[3].listaPartidos[2].color = "DarkOrange";
@@ -237,15 +237,7 @@ namespace pactometro
             Eleccion elect = (Eleccion)upperTable.SelectedItem;  
             if (elect != null)
             {
-                lowerTable.Items.Clear();
-                for(int i = 0; i < elect.listaPartidos.Count; i++)
-                {
-                    lowerTable.Items.Add(elect.listaPartidos[i]); //añadimos a la tabla inferior solo el nombre y los escaños de los partidos de la elección seleccionada
-                }
-
-                /*
-                    lowerTable.ItemsSource = elect.listaPartidos;       
-                */
+               lowerTable.ItemsSource = elect.listaPartidos;       
             }
         }
 

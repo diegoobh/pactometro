@@ -23,10 +23,11 @@ namespace pactometro
         private String color;
         private Partido partido; 
 
-        public ObservableCollection<Partido> partidos;
+        ObservableCollection<Partido> partidos;
         public CDPartidos(ObservableCollection<Partido> listaPartidos)
         {
             InitializeComponent();
+            txtPartidos.Focus();
             this.partidos = listaPartidos;
             listaAñadidos.ItemsSource = partidos;
         }
@@ -39,6 +40,11 @@ namespace pactometro
 
             partido = new Partido(nombre, color, votos);
             partidos.Add(partido);
+
+            txtPartidos.Text = "";
+            txtVotos.Text = "";
+            txtColor.Text = "";
+            txtPartidos.Focus(); 
         }
     }
 }
