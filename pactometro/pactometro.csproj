@@ -72,7 +72,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CdPartidos.xaml">
+    <Page Include="CDEleccion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CDPartidos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -88,8 +92,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CdPartidos.xaml.cs">
-      <DependentUpon>CdPartidos.xaml</DependentUpon>
+    <Compile Include="CDEleccion.xaml.cs">
+      <DependentUpon>CDEleccion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CDPartidos.xaml.cs">
+      <DependentUpon>CDPartidos.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataWindow.xaml.cs">
       <DependentUpon>DataWindow.xaml</DependentUpon>

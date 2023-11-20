@@ -1,11 +1,6 @@
-﻿/*
- * Diego Borrallo Herrero
- * diegobh@usal.es
- * Práctica EL PACTÓMETRO 2023
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,49 +15,30 @@ using System.Windows.Shapes;
 
 namespace pactometro
 {
-    public partial class CdPartidos : Window
+    public partial class CDPartidos : Window
     {
 
-        Eleccion eleccion = new Eleccion();
-        Partido partido; 
-        public CdPartidos()
+        private String nombre;
+        private int votos;
+        private String color;
+        private Partido partido; 
+
+        public ObservableCollection<Partido> partidos;
+        public CDPartidos(ObservableCollection<Partido> listaPartidos)
         {
             InitializeComponent();
-            txtEleccion.Focus(); 
-
-            if(DialogResult == true)
-            {
-                eleccion.nombreEleccion = txtEleccion.Text;
-                eleccion.fecha = DateTime.Parse(txtFecha.Text);
-                eleccion.totalEscanios = int.Parse(txtEscanios.Text);
-                eleccion.mayoriaAbs = eleccion.calculaMayoria(eleccion.totalEscanios);
-            }
-        }
-
-        private void btnAceptar_Click(object sender, RoutedEventArgs e)
-        {   
-            DialogResult = true;
-            //upperTable.Items.Add(eleccion); //añadir a la tabla de arriba de la ventana de datos la elección creada
-        }
-
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult= false;
+            this.partidos = listaPartidos;
+            listaAñadidos.ItemsSource = partidos;
         }
 
         private void btnAñadirPartido_Click(object sender, RoutedEventArgs e)
         {
-            txtPartidos.Focus();
-            txtPartidos.Clear(); 
-            txtColor.Clear();
-            txtVotos.Clear();
+            nombre = txtPartidos.Text;
+            votos = int.Parse(txtVotos.Text);
+            color = txtColor.Text;
 
-            partido = new Partido(); 
-            partido.nombre = txtPartidos.Text;
-            partido.escanios = int.Parse(txtVotos.Text);
-            partido.color = txtColor.Text;
-
-            eleccion.listaPartidos.Add(partido); 
+            partido = new Partido(nombre, color, votos);
+            partidos.Add(partido);
         }
     }
 }

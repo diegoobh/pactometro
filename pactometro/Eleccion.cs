@@ -14,7 +14,7 @@ using System.Windows.Documents;
 
 namespace pactometro
 {
-    internal class Eleccion
+    public class Eleccion
     {
 
         public String nombreEleccion { get; set; }
@@ -22,20 +22,20 @@ namespace pactometro
         public int totalEscanios { get; set; }
         public int mayoriaAbs { get; set; }
 
-        public Collection<Partido> listaPartidos = new Collection<Partido>();
+        public ObservableCollection<Partido> listaPartidos = new ObservableCollection<Partido>();
 
         public Eleccion()
         {
 
         }
 
-        public Eleccion(String nombre, DateTime fecha, int totalEscanios, int mayoriaAbs/*, Collection<Partido> partidos*/)
+        public Eleccion(String nombre, DateTime fecha, int totalEscanios, int mayoriaAbs, ObservableCollection<Partido> partidos)
         {
             this.nombreEleccion = nombre;
             this.fecha = fecha;
             this.totalEscanios = totalEscanios;
             this.mayoriaAbs = mayoriaAbs;
-           // this.listaPartidos = partidos; 
+            this.listaPartidos = partidos; 
         }
 
         public override string ToString()
@@ -43,7 +43,7 @@ namespace pactometro
             return nombreEleccion + " " + fecha + " " + totalEscanios + " " + mayoriaAbs;
         }
 
-        internal int calculaMayoria(int totalEscanios)
+        public int calculaMayoria(int totalEscanios)
         {
             return (totalEscanios / 2) + 1; 
         }

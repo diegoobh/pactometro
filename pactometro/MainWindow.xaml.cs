@@ -33,7 +33,7 @@ namespace pactometro
             InitializeComponent();
             ventana2 = new DataWindow();
             ventana2.Closing += ventana2_Closing; //añadimos nuestro propio método closing para la ventana de datos
-            ventana2.Show(); //segunda ventana en modo no modal  
+            ventana2.Show(); //segunda ventana en modo no modal
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -63,8 +63,7 @@ namespace pactometro
 
         public void salir_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.Close();
-            ventana2.Close();     
+            Application.Current.Shutdown();  
         }
 
         private void vistaDatos_Click(object sender, RoutedEventArgs e)
@@ -93,7 +92,7 @@ namespace pactometro
 
         private void mainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            cerrarVentana2 = true;
+            cerrarVentana2 = true; //queremos que se cierre la ventana de datos
             ventana2.Close(); 
         }
 

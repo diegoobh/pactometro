@@ -24,15 +24,18 @@ namespace pactometro
 {
     public partial class DataWindow : Window
     {
+
+        ObservableCollection<Eleccion> elecciones; 
         public DataWindow()
         {
             InitializeComponent();
             añadirDatosPorDefecto();
+            upperTable.ItemsSource = elecciones; 
         }
 
         private void añadirDatosPorDefecto() //datos hardcodeados de ejemplo de varias elecciones
         {
-            Collection<Eleccion> elecciones = new Collection<Eleccion>();
+            elecciones = new ObservableCollection<Eleccion>();
             for (int i = 0; i < 5; i++)
             {
                 elecciones.Add(new Eleccion());
@@ -45,40 +48,39 @@ namespace pactometro
             for (int i = 0; i < 11; i++)
             {
                 elecciones[0].listaPartidos.Add(new Partido());
-
             }
             elecciones[0].listaPartidos[0].nombre = "PP";
-            elecciones[0].listaPartidos[0].escanios = 136;
+            elecciones[0].listaPartidos[0].votos = 136;
             elecciones[0].listaPartidos[0].color = "Blue";
             elecciones[0].listaPartidos[1].nombre = "PSOE";
-            elecciones[0].listaPartidos[1].escanios = 122;
+            elecciones[0].listaPartidos[1].votos = 122;
             elecciones[0].listaPartidos[1].color = "Red";
             elecciones[0].listaPartidos[2].nombre = "VOX";
-            elecciones[0].listaPartidos[2].escanios = 33;
+            elecciones[0].listaPartidos[2].votos = 33;
             elecciones[0].listaPartidos[2].color = "lightGreen";
             elecciones[0].listaPartidos[3].nombre = "SUMAR";
-            elecciones[0].listaPartidos[3].escanios = 31;
+            elecciones[0].listaPartidos[3].votos = 31;
             elecciones[0].listaPartidos[3].color = "Pink";
             elecciones[0].listaPartidos[4].nombre = "ERC";
-            elecciones[0].listaPartidos[4].escanios = 7;
+            elecciones[0].listaPartidos[4].votos = 7;
             elecciones[0].listaPartidos[4].color = "Orange";
             elecciones[0].listaPartidos[5].nombre = "JUNTS";
-            elecciones[0].listaPartidos[5].escanios = 7;
+            elecciones[0].listaPartidos[5].votos = 7;
             elecciones[0].listaPartidos[5].color = "lightBlue";
             elecciones[0].listaPartidos[6].nombre = "EH BILDU";
-            elecciones[0].listaPartidos[6].escanios = 6;
+            elecciones[0].listaPartidos[6].votos = 6;
             elecciones[0].listaPartidos[6].color = "lightGreen";
             elecciones[0].listaPartidos[7].nombre = "EAJ_PNV";
-            elecciones[0].listaPartidos[7].escanios = 5;
+            elecciones[0].listaPartidos[7].votos = 5;
             elecciones[0].listaPartidos[7].color = "Green";
             elecciones[0].listaPartidos[8].nombre = "BNG";
-            elecciones[0].listaPartidos[8].escanios = 1;
+            elecciones[0].listaPartidos[8].votos = 1;
             elecciones[0].listaPartidos[8].color = "LightSkyBlue";
             elecciones[0].listaPartidos[9].nombre = "CCA";
-            elecciones[0].listaPartidos[9].escanios = 1;
+            elecciones[0].listaPartidos[9].votos = 1;
             elecciones[0].listaPartidos[9].color = "SkyBlue";
             elecciones[0].listaPartidos[10].nombre = "UPN";
-            elecciones[0].listaPartidos[10].escanios = 1;
+            elecciones[0].listaPartidos[10].votos = 1;
             elecciones[0].listaPartidos[10].color = "DarkRed";
 
             elecciones[1].nombreEleccion = "Elecciones Generales 10-11-2019";
@@ -91,46 +93,46 @@ namespace pactometro
 
             }
             elecciones[1].listaPartidos[0].nombre = "PSOE";
-            elecciones[1].listaPartidos[0].escanios = 120;
+            elecciones[1].listaPartidos[0].votos = 120;
             elecciones[1].listaPartidos[0].color = "Red";
             elecciones[1].listaPartidos[1].nombre = "PP";
-            elecciones[1].listaPartidos[1].escanios = 89;
+            elecciones[1].listaPartidos[1].votos = 89;
             elecciones[1].listaPartidos[1].color = "Blue";
             elecciones[1].listaPartidos[2].nombre = "VOX";
-            elecciones[1].listaPartidos[2].escanios = 52;
+            elecciones[1].listaPartidos[2].votos = 52;
             elecciones[1].listaPartidos[2].color = "LightGreen";
             elecciones[1].listaPartidos[3].nombre = "PODEMOS";
-            elecciones[1].listaPartidos[3].escanios = 26;
+            elecciones[1].listaPartidos[3].votos = 26;
             elecciones[1].listaPartidos[3].color = "Purple";
             elecciones[1].listaPartidos[4].nombre = "ERC";
-            elecciones[1].listaPartidos[4].escanios = 13;
+            elecciones[1].listaPartidos[4].votos = 13;
             elecciones[1].listaPartidos[4].color = "Orange";
             elecciones[1].listaPartidos[5].nombre = "CIUDADANOS";
-            elecciones[1].listaPartidos[5].escanios = 10;
+            elecciones[1].listaPartidos[5].votos = 10;
             elecciones[1].listaPartidos[5].color = "DarkOrange";
             elecciones[1].listaPartidos[6].nombre = "JUNTS";
-            elecciones[1].listaPartidos[6].escanios = 8;
+            elecciones[1].listaPartidos[6].votos = 8;
             elecciones[1].listaPartidos[6].color = "Pink";
             elecciones[1].listaPartidos[7].nombre = "EAJ_PNV";
-            elecciones[1].listaPartidos[7].escanios = 6;
+            elecciones[1].listaPartidos[7].votos = 6;
             elecciones[1].listaPartidos[7].color = "Green";
             elecciones[1].listaPartidos[8].nombre = "EH BILDU";
-            elecciones[1].listaPartidos[8].escanios = 5;
+            elecciones[1].listaPartidos[8].votos = 5;
             elecciones[1].listaPartidos[8].color = "LightGreen";
             elecciones[1].listaPartidos[9].nombre = "MASPAIS";
-            elecciones[1].listaPartidos[9].escanios = 3;
+            elecciones[1].listaPartidos[9].votos = 3;
             elecciones[1].listaPartidos[9].color = "Aqua";
             elecciones[1].listaPartidos[10].nombre = "CUP_PR";
-            elecciones[1].listaPartidos[10].escanios = 2;
+            elecciones[1].listaPartidos[10].votos = 2;
             elecciones[1].listaPartidos[10].color = "Yellow";
             elecciones[1].listaPartidos[11].nombre = "CCA";
-            elecciones[1].listaPartidos[11].escanios = 2;
+            elecciones[1].listaPartidos[11].votos = 2;
             elecciones[1].listaPartidos[11].color = "LightOrange";
             elecciones[1].listaPartidos[12].nombre = "BNG";
-            elecciones[1].listaPartidos[12].escanios = 1;
+            elecciones[1].listaPartidos[12].votos = 1;
             elecciones[1].listaPartidos[12].color = "LightSkyBlue";
             elecciones[1].listaPartidos[13].nombre = "OTROS";
-            elecciones[1].listaPartidos[13].escanios = 4;
+            elecciones[1].listaPartidos[13].votos = 4;
             elecciones[1].listaPartidos[13].color = "Black";
 
             elecciones[2].nombreEleccion = "Autonómicas Comunidad de CASTILLA y LEÓN 14-02-2022";
@@ -143,28 +145,28 @@ namespace pactometro
 
             }
             elecciones[2].listaPartidos[0].nombre = "PP";
-            elecciones[2].listaPartidos[0].escanios = 31;
+            elecciones[2].listaPartidos[0].votos = 31;
             elecciones[2].listaPartidos[0].color = "Blue";
             elecciones[2].listaPartidos[1].nombre = "PSOE";
-            elecciones[2].listaPartidos[1].escanios = 28;
+            elecciones[2].listaPartidos[1].votos = 28;
             elecciones[2].listaPartidos[1].color = "Red";
             elecciones[2].listaPartidos[2].nombre = "VOX";
-            elecciones[2].listaPartidos[2].escanios = 13;
+            elecciones[2].listaPartidos[2].votos = 13;
             elecciones[2].listaPartidos[2].color = "Green";
             elecciones[2].listaPartidos[3].nombre = "UPL";
-            elecciones[2].listaPartidos[3].escanios = 3;
+            elecciones[2].listaPartidos[3].votos = 3;
             elecciones[2].listaPartidos[3].color = "DarkMagenta";
             elecciones[2].listaPartidos[4].nombre = "SY";
-            elecciones[2].listaPartidos[4].escanios = 3;
+            elecciones[2].listaPartidos[4].votos = 3;
             elecciones[2].listaPartidos[4].color = "Black";
             elecciones[2].listaPartidos[5].nombre = "PODEMOS-IU";
-            elecciones[2].listaPartidos[5].escanios = 1;
+            elecciones[2].listaPartidos[5].votos = 1;
             elecciones[2].listaPartidos[5].color = "Purple";
             elecciones[2].listaPartidos[6].nombre = "CIUDADANOS";
-            elecciones[2].listaPartidos[6].escanios = 1;
+            elecciones[2].listaPartidos[6].votos = 1;
             elecciones[2].listaPartidos[6].color = "DarkOrange";
             elecciones[2].listaPartidos[7].nombre = "XAV";
-            elecciones[2].listaPartidos[7].escanios = 1;
+            elecciones[2].listaPartidos[7].votos = 1;
             elecciones[2].listaPartidos[7].color = "LightOrange";
 
 
@@ -178,25 +180,25 @@ namespace pactometro
 
             }
             elecciones[3].listaPartidos[0].nombre = "PP";
-            elecciones[3].listaPartidos[0].escanios = 29;
+            elecciones[3].listaPartidos[0].votos = 29;
             elecciones[3].listaPartidos[0].color = "Blue";
             elecciones[3].listaPartidos[1].nombre = "PSOE";
-            elecciones[3].listaPartidos[1].escanios = 35;
+            elecciones[3].listaPartidos[1].votos = 35;
             elecciones[3].listaPartidos[1].color = "Red";
             elecciones[3].listaPartidos[2].nombre = "CIUDADANOS";
-            elecciones[3].listaPartidos[2].escanios = 12;
+            elecciones[3].listaPartidos[2].votos = 12;
             elecciones[3].listaPartidos[2].color = "DarkOrange";
             elecciones[3].listaPartidos[3].nombre = "PODEMOS-IU";
-            elecciones[3].listaPartidos[3].escanios = 2;
+            elecciones[3].listaPartidos[3].votos = 2;
             elecciones[3].listaPartidos[3].color = "Black";
             elecciones[3].listaPartidos[4].nombre = "UPL";
-            elecciones[3].listaPartidos[4].escanios = 1;
+            elecciones[3].listaPartidos[4].votos = 1;
             elecciones[3].listaPartidos[4].color = "DarkMagenta";
             elecciones[3].listaPartidos[5].nombre = "XAV";
-            elecciones[3].listaPartidos[5].escanios = 1;
+            elecciones[3].listaPartidos[5].votos = 1;
             elecciones[3].listaPartidos[5].color = "Purple";
             elecciones[3].listaPartidos[6].nombre = "VOX";
-            elecciones[3].listaPartidos[6].escanios = 1;
+            elecciones[3].listaPartidos[6].votos = 1;
             elecciones[3].listaPartidos[6].color = "Green";
 
             elecciones[4].nombreEleccion = "Autonómicas Comunidad de CASTILLA y LEÓN 24-05-2015";
@@ -209,57 +211,57 @@ namespace pactometro
 
             }
             elecciones[4].listaPartidos[0].nombre = "PP";
-            elecciones[4].listaPartidos[0].escanios = 42;
+            elecciones[4].listaPartidos[0].votos = 42;
             elecciones[4].listaPartidos[0].color = "Blue";
             elecciones[4].listaPartidos[1].nombre = "PSOE";
-            elecciones[4].listaPartidos[1].escanios = 25;
+            elecciones[4].listaPartidos[1].votos = 25;
             elecciones[4].listaPartidos[1].color = "Red";
             elecciones[4].listaPartidos[2].nombre = "PODEMOS";
-            elecciones[4].listaPartidos[2].escanios = 10;
+            elecciones[4].listaPartidos[2].votos = 10;
             elecciones[4].listaPartidos[2].color = "Purple";
             elecciones[4].listaPartidos[3].nombre = "CIUDADANOS";
-            elecciones[4].listaPartidos[3].escanios = 5;
+            elecciones[4].listaPartidos[3].votos = 5;
             elecciones[4].listaPartidos[3].color = "DarkOrange";
             elecciones[4].listaPartidos[4].nombre = "UPL";
-            elecciones[4].listaPartidos[4].escanios = 3;
+            elecciones[4].listaPartidos[4].votos = 3;
             elecciones[4].listaPartidos[4].color = "DarkMagenta";
             elecciones[4].listaPartidos[5].nombre = "IU-EQUO";
-            elecciones[4].listaPartidos[5].escanios = 1;
+            elecciones[4].listaPartidos[5].votos = 1;
             elecciones[4].listaPartidos[5].color = "Black";
 
-
-
-            for (int i = 0; i < elecciones.Count; i++)
-            {
-                upperTable.Items.Add(elecciones[i]); //añadimos a la tabla superior las elecciones que tenemos por defecto
-            }
         }
 
         private void upperTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (upperTable.SelectedItem != null)
+
+            Eleccion elect = (Eleccion)upperTable.SelectedItem;  
+            if (elect != null)
             {
                 lowerTable.Items.Clear();
-                Eleccion amig2 = (Eleccion)(upperTable.SelectedItem);
-                for(int i = 0; i < amig2.listaPartidos.Count; i++)
+                for(int i = 0; i < elect.listaPartidos.Count; i++)
                 {
-                    lowerTable.Items.Add(amig2.listaPartidos[i]); //añadimos a la tabla inferior solo el nombre y los escaños de los partidos de la elección seleccionada
-                }        
+                    lowerTable.Items.Add(elect.listaPartidos[i]); //añadimos a la tabla inferior solo el nombre y los escaños de los partidos de la elección seleccionada
+                }
+
+                /*
+                    lowerTable.ItemsSource = elect.listaPartidos;       
+                */
             }
         }
 
         private void btnAñadir_Click(object sender, RoutedEventArgs e)
         {
-            CdPartidos form = new CdPartidos();
-            form.Owner = this;
-            form.ShowDialog();
+            CDEleccion form1 = new CDEleccion(elecciones);
+            form1.Owner = this;
+            form1.ShowDialog();
         }
 
         private void btnEliminar_Click(object sender, RoutedEventArgs e)
         {
-            if(upperTable.SelectedItem != null)
+            Eleccion elect = (Eleccion)upperTable.SelectedItem;
+            if(elect != null)
             {
-                upperTable.Items.RemoveAt(upperTable.SelectedIndex); 
+                elecciones.Remove(elect); 
             }
             upperTable.Items.Refresh();
             lowerTable.Items.Clear();  

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pactometro"
         mc:Ignorable="d"
-        Title="EL PACTÓMETRO" Height="450" Width="800" Name ="mainWindow"
+        Title="EL PACTÓMETRO" Height="450" Width="800" Background="LightSeaGreen" Name ="mainWindow"
         SizeChanged="Window_SizeChanged" Loaded="Window_Loaded" Closing="mainWindow_Closing">
 
         <Grid>
@@ -25,9 +25,9 @@
                 </MenuItem>
             </Menu>
 
-            <Label Name="titulo" Content="EL PACTÓMETRO" Grid.Row="1" HorizontalAlignment="Center"  FontSize="20" FontWeight="Black"/>
+            <Label Name="titulo" Content="EL PACTÓMETRO" Grid.Row="1" HorizontalAlignment="Center" FontSize="20" FontWeight="Black"/>
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <Canvas Name="pnlResultados" Grid.Row="1" Margin="35" Background="Beige">
+                <Canvas Name="pnlResultados" Grid.Row="1" Margin="35" Background="MintCream">
 
                 </Canvas>
             </ScrollViewer>

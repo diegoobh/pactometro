@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pactometro"
         mc:Ignorable="d"
-        Title="Ventana de datos" Height="450" Width="800">
+        Title="Ventana de datos" Height="450" Width="800" Background="LightSeaGreen">
     <Grid Name="mainGrid">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -36,7 +36,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Partidos" DisplayMemberBinding="{Binding nombre}"/>
-                    <GridViewColumn Header="Escaños" DisplayMemberBinding="{Binding escanios}"/>
+                    <GridViewColumn Header="Escaños" DisplayMemberBinding="{Binding votos}"/>
                 </GridView>
             </ListView.View>
         </ListView>

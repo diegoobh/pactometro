@@ -9,29 +9,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace pactometro
 {
-    internal class Partido
+    public class Partido
     {
         public String nombre { get; set; }
         public String color { get; set; }
-        public int escanios { get; set; }
+        public int votos { get; set; }
 
         public Partido()
         {
 
         }
-        public Partido(String nombre, String color, int escanios)
+        public Partido(String nombre, String color, int votos)
         {
             this.nombre = nombre;
             this.color = color;
-            this.escanios = escanios;
+            this.votos = votos;
         }
 
         public override String ToString()
         {
-            return nombre + " " + escanios; //no queremos que se nos muestre el color del partido
+            return nombre + " " + votos; //no queremos que se nos muestre el color del partido
         }
     }
 }
