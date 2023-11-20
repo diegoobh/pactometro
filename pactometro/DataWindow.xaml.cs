@@ -255,7 +255,7 @@ namespace pactometro
             {
                 elecciones.Remove(elect); 
             }
-            upperTable.Items.Refresh(); 
+            upperTable.Items.Refresh();
         }
     }
 }
