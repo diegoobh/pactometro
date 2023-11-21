@@ -52,9 +52,14 @@ namespace pactometro
 
         private void btnAñadirPartidos_Click(object sender, RoutedEventArgs e)
         {
-            CDPartidos cDPartidos = new CDPartidos(eleccion.listaPartidos);
-            cDPartidos.Owner = this;
-            cDPartidos.ShowDialog(); 
+            if(eleccion != null) {
+                CDPartidos cDPartidos = new CDPartidos(eleccion.listaPartidos);
+                cDPartidos.Owner = this;
+                cDPartidos.ShowDialog();
+            } else {
+                MessageBox.Show("Introduzca los datos de la elección primero.");
+            }
+
         }
     }
 }

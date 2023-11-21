@@ -22,7 +22,7 @@ namespace pactometro
         public int totalEscanios { get; set; }
         public int mayoriaAbs { get; set; }
 
-        public ObservableCollection<Partido> listaPartidos = new ObservableCollection<Partido>();
+        public ObservableCollection<Partido> listaPartidos = new ObservableCollection<Partido>(); //si no ponemos public, nos da error al pasarlo a CDPartidos
 
         public Eleccion()
         {
