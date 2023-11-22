@@ -116,10 +116,10 @@ namespace pactometro
             double spaceBetweenRectangles = 10;
 
             // Calcula cuántos rectángulos pueden caber en el ancho del Canvas
-            int numberOfRectangles = (int)(canvasWidth / (rectangleWidth + spaceBetweenRectangles));
+            int numberOfRectangles = resultadosEleccion.Count(); 
 
             // Ajusta el ancho de los rectángulos según el espacio disponible
-            rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles) / numberOfRectangles;
+            rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 10) / numberOfRectangles;
 
             // Calcula la altura máxima posible para que los rectángulos se ajusten al Canvas
             double maxRectangleHeight = canvasHeight;
@@ -127,10 +127,12 @@ namespace pactometro
             // Aquí debes escribir el código para dibujar tus resultados en el Canvas
             double x = 10; // posición inicial x
 
+           // double k = (h * 0.9) / maxVotos;
+
             foreach (var resultado in resultadosEleccion)
             {
                 // Ajusta la altura proporcionalmente al factor de escala
-                double rectangleHeight = resultado.votos * 2;
+                double rectangleHeight = resultado.votos * 2; 
 
                 Rectangle rectangulo = new Rectangle
                 {

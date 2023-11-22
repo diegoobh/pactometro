@@ -22,7 +22,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ELECCIONES" DisplayMemberBinding="{Binding nombreEleccion}"/>
-                    <GridViewColumn Header="Fecha" DisplayMemberBinding="{Binding fecha}"/>
+                    <GridViewColumn Header="Fecha" DisplayMemberBinding="{Binding fecha, StringFormat={}{0: dd/MM/yyyy}}"/>
                     <GridViewColumn Header="Número de escaños" DisplayMemberBinding="{Binding totalEscanios}"/>
                     <GridViewColumn Header="Mayoría absoluta" DisplayMemberBinding="{Binding mayoriaAbs}"/>
                 </GridView>
