@@ -47,5 +47,18 @@ namespace pactometro
         {
             return (totalEscanios / 2) + 1; 
         }
+
+        public int obtenerMaxVotos()
+        {
+            int max = -9999;  
+
+            foreach(Partido p in listaPartidos)
+            {
+                if (p.votos >= max) {
+                    max = p.votos;
+                }
+            }
+            return max; 
+        }
     }
 }

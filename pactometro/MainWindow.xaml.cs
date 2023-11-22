@@ -29,7 +29,9 @@ namespace pactometro
         DataWindow ventana2;
         public bool cerrarVentana2 = false;
 
-        ObservableCollection<Partido> resultadosEleccion; 
+        ObservableCollection<Partido> resultadosEleccion;
+
+        public int max; 
 
         public MainWindow()
         {
@@ -45,13 +47,14 @@ namespace pactometro
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             //código para mostrar resultados acordes al tamaño de la ventana
-            mostrarEleccion(resultadosEleccion);
+            mostrarEleccion(resultadosEleccion, max);
         }
 
         private void vista1_Click(object sender, RoutedEventArgs e)
         {
             resultadosEleccion = ((Eleccion)ventana2.upperTable.SelectedItem).listaPartidos;
-            mostrarEleccion(resultadosEleccion);
+            max = ((Eleccion)ventana2.upperTable.SelectedItem).obtenerMaxVotos();
+            mostrarEleccion(resultadosEleccion, max);
         }
 
         private void vista2_Click(object sender, RoutedEventArgs e)
@@ -99,10 +102,14 @@ namespace pactometro
             ventana2.Close(); 
         }
 
-        private void mostrarEleccion(ObservableCollection<Partido> resultadosEleccion)
+        private void mostrarEleccion(ObservableCollection<Partido> resultadosEleccion, int max)
         {
             // Limpia el contenido actual del Canvas
             pnlResultados.Children.Clear();
+
+            int maxVotos = max; // resultadosEleccion.obtenerMaxVotos();
+
+            int offsetInicial = 10; 
 
             // Establece un valor mínimo para el ancho del Canvas
             double minWidth = 100;
@@ -119,20 +126,20 @@ namespace pactometro
             int numberOfRectangles = resultadosEleccion.Count(); 
 
             // Ajusta el ancho de los rectángulos según el espacio disponible
-            rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 10) / numberOfRectangles;
+            rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - offsetInicial) / numberOfRectangles;
 
             // Calcula la altura máxima posible para que los rectángulos se ajusten al Canvas
             double maxRectangleHeight = canvasHeight;
 
             // Aquí debes escribir el código para dibujar tus resultados en el Canvas
-            double x = 10; // posición inicial x
+            double x = offsetInicial; // posición inicial x
 
-           // double k = (h * 0.9) / maxVotos;
+            double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
 
             foreach (var resultado in resultadosEleccion)
             {
                 // Ajusta la altura proporcionalmente al factor de escala
-                double rectangleHeight = resultado.votos * 2; 
+                double rectangleHeight = resultado.votos * k; 
 
                 Rectangle rectangulo = new Rectangle
                 {
