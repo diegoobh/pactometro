@@ -30,9 +30,9 @@ namespace pactometro
         DataWindow ventana2;
         public bool cerrarVentana2 = false;
 
-        ObservableCollection<Partido> resultadosEleccion;
+        // ObservableCollection<Partido> resultadosEleccion;
 
-        public int max; 
+        Eleccion eleccion;  
 
         public MainWindow()
         {
@@ -41,20 +41,24 @@ namespace pactometro
             ventana2.Closing += ventana2_Closing; //añadimos nuestro propio método closing para la ventana de datos
             ventana2.Show(); 
 
-            resultadosEleccion = new ObservableCollection<Partido>();
-            
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            mostrarEleccion(resultadosEleccion, max);
+            if (ventana2.upperTable.SelectedItem == null)
+            {
+                eleccion = (Eleccion)ventana2.upperTable.Items[0];
+            } else
+            {
+                eleccion = (Eleccion)ventana2.upperTable.SelectedItem;
+            }
+            mostrarEleccion(eleccion); 
         }
 
         private void vista1_Click(object sender, RoutedEventArgs e)
         {
-            resultadosEleccion = ((Eleccion)ventana2.upperTable.SelectedItem).listaPartidos;
-            max = ((Eleccion)ventana2.upperTable.SelectedItem).obtenerMaxVotos();
-            mostrarEleccion(resultadosEleccion, max);
+            eleccion = (Eleccion)ventana2.upperTable.SelectedItem;
+            mostrarEleccion(eleccion);
         }
 
         private void vista2_Click(object sender, RoutedEventArgs e)
@@ -102,14 +106,14 @@ namespace pactometro
             ventana2.Close(); 
         }
 
-        public void mostrarEleccion(ObservableCollection<Partido> resultadosEleccion, int max)
+        public void mostrarEleccion(Eleccion eleccion)
         {
             pnlResultados.Children.Clear();
 
-            int maxVotos = max;
+            int maxVotos = eleccion.obtenerMaxVotos();
             int offsetInicial = 10;
 
-            int numberOfRectangles = resultadosEleccion.Count();
+            int numberOfRectangles = eleccion.listaPartidos.Count();
             double minWidth = 100;
             double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
             double canvasHeight = pnlResultados.ActualHeight;
@@ -120,14 +124,14 @@ namespace pactometro
             double x = offsetInicial; // posición inicial x
             double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
 
-            foreach (var resultado in resultadosEleccion)
+            foreach (var partido in eleccion.listaPartidos)
             {
                 // Ajusta la altura proporcionalmente al factor de escala
-                double rectangleHeight = resultado.votos * k;
+                double rectangleHeight = partido.votos * k;
 
                 try
                 {
-                    Color color = (Color)ColorConverter.ConvertFromString(resultado.color);
+                    Color color = (Color)ColorConverter.ConvertFromString(partido.color);
 
                     Brush colorPartido = new SolidColorBrush(color);
 
@@ -139,7 +143,7 @@ namespace pactometro
                         Margin = new Thickness(x, canvasHeight - rectangleHeight, 0, 0)
                     };
 
-                    rectangulo.ToolTip = "Partido: " + resultado.nombre + " Votos: " + resultado.votos;
+                    rectangulo.ToolTip = "Partido: " + partido.nombre + " Votos: " + partido.votos;
 
                     x += rectangleWidth + spaceBetweenRectangles;
 

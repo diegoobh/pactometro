@@ -241,7 +241,8 @@ namespace pactometro
             if (elect != null)
             {
                lowerTable.ItemsSource = elect.listaPartidos;
-               vPrincipal.mostrarEleccion(elect.listaPartidos, elect.obtenerMaxVotos());
+               vPrincipal.mostrarEleccion(elect);
+               vPrincipal.titulo.Content = elect.nombreEleccion;
             }
         }
 
