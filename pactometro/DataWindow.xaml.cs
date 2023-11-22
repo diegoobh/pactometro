@@ -24,13 +24,16 @@ namespace pactometro
 {
     public partial class DataWindow : Window
     {
+        public MainWindow vPrincipal; 
 
         ObservableCollection<Eleccion> elecciones; 
-        public DataWindow()
+        public DataWindow(MainWindow principal)
         {
             InitializeComponent();
             añadirDatosPorDefecto();
             upperTable.ItemsSource = elecciones; 
+
+            vPrincipal = principal;
         }
 
         private void añadirDatosPorDefecto() //datos hardcodeados de ejemplo de varias elecciones
@@ -127,7 +130,7 @@ namespace pactometro
             elecciones[1].listaPartidos[10].color = "Yellow";
             elecciones[1].listaPartidos[11].nombre = "CCA";
             elecciones[1].listaPartidos[11].votos = 2;
-            elecciones[1].listaPartidos[11].color = "LightOrange";
+            elecciones[1].listaPartidos[11].color = "Orange";
             elecciones[1].listaPartidos[12].nombre = "BNG";
             elecciones[1].listaPartidos[12].votos = 1;
             elecciones[1].listaPartidos[12].color = "LightSkyBlue";
@@ -167,7 +170,7 @@ namespace pactometro
             elecciones[2].listaPartidos[6].color = "DarkOrange";
             elecciones[2].listaPartidos[7].nombre = "XAV";
             elecciones[2].listaPartidos[7].votos = 1;
-            elecciones[2].listaPartidos[7].color = "LightOrange";
+            elecciones[2].listaPartidos[7].color = "Orange";
 
 
             elecciones[3].nombreEleccion = "Autonómicas Comunidad de CASTILLA y LEÓN 26-05-2019";
@@ -237,7 +240,8 @@ namespace pactometro
             Eleccion elect = (Eleccion)upperTable.SelectedItem;  
             if (elect != null)
             {
-               lowerTable.ItemsSource = elect.listaPartidos;       
+               lowerTable.ItemsSource = elect.listaPartidos;
+               vPrincipal.mostrarEleccion(elect.listaPartidos, elect.obtenerMaxVotos());
             }
         }
 

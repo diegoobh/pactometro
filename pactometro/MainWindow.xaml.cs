@@ -6,6 +6,7 @@
 
 
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -36,9 +37,9 @@ namespace pactometro
         public MainWindow()
         {
             InitializeComponent();
-            ventana2 = new DataWindow();
+            ventana2 = new DataWindow(this);
             ventana2.Closing += ventana2_Closing; //añadimos nuestro propio método closing para la ventana de datos
-            ventana2.Show(); //segunda ventana en modo no modal
+            ventana2.Show(); 
 
             resultadosEleccion = new ObservableCollection<Partido>();
             
@@ -46,7 +47,6 @@ namespace pactometro
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            //código para mostrar resultados acordes al tamaño de la ventana
             mostrarEleccion(resultadosEleccion, max);
         }
 
@@ -76,7 +76,7 @@ namespace pactometro
         {
             if (ventana2 == null) //si no existe o no está visible instanciamos una nueva ventana
             {
-                ventana2 = new DataWindow();
+                ventana2 = new DataWindow(this);
                 ventana2.Closed += (s, args) => { cerrarVentana2 = false; }; //operador lambda, pasamos el sender y los argumentos
             }
 
@@ -102,58 +102,54 @@ namespace pactometro
             ventana2.Close(); 
         }
 
-        private void mostrarEleccion(ObservableCollection<Partido> resultadosEleccion, int max)
+        public void mostrarEleccion(ObservableCollection<Partido> resultadosEleccion, int max)
         {
-            // Limpia el contenido actual del Canvas
             pnlResultados.Children.Clear();
 
-            int maxVotos = max; // resultadosEleccion.obtenerMaxVotos();
+            int maxVotos = max;
+            int offsetInicial = 10;
 
-            int offsetInicial = 10; 
-
-            // Establece un valor mínimo para el ancho del Canvas
+            int numberOfRectangles = resultadosEleccion.Count();
             double minWidth = 100;
             double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
-
-            // Ancho y alto total disponibles en el Canvas
             double canvasHeight = pnlResultados.ActualHeight;
-
-            // Ancho y espacio entre los rectángulos
-            double rectangleWidth = 50;
             double spaceBetweenRectangles = 10;
-
-            // Calcula cuántos rectángulos pueden caber en el ancho del Canvas
-            int numberOfRectangles = resultadosEleccion.Count(); 
-
             // Ajusta el ancho de los rectángulos según el espacio disponible
-            rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - offsetInicial) / numberOfRectangles;
+            double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;           
 
-            // Calcula la altura máxima posible para que los rectángulos se ajusten al Canvas
-            double maxRectangleHeight = canvasHeight;
-
-            // Aquí debes escribir el código para dibujar tus resultados en el Canvas
             double x = offsetInicial; // posición inicial x
-
             double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
 
             foreach (var resultado in resultadosEleccion)
             {
                 // Ajusta la altura proporcionalmente al factor de escala
-                double rectangleHeight = resultado.votos * k; 
+                double rectangleHeight = resultado.votos * k;
 
-                Rectangle rectangulo = new Rectangle
+                try
                 {
-                    Width = rectangleWidth, // ancho ajustado del rectángulo
-                    Height = rectangleHeight, // altura ajustada proporcionalmente
-                    Fill = Brushes.Blue, // Establecer el color del relleno usando el Brush obtenido
-                    Margin = new Thickness(x, canvasHeight - rectangleHeight, 0, 0) // posición del rectángulo en la parte inferior del Canvas
-                };
+                    Color color = (Color)ColorConverter.ConvertFromString(resultado.color);
 
-                // Incrementa la posición x para el siguiente rectángulo
-                x += rectangleWidth + spaceBetweenRectangles;
+                    Brush colorPartido = new SolidColorBrush(color);
 
-                // Agrega el rectángulo al Canvas después de ajustar la posición
-                pnlResultados.Children.Add(rectangulo);
+                    Rectangle rectangulo = new Rectangle
+                    {
+                        Width = rectangleWidth, 
+                        Height = rectangleHeight, 
+                        Fill = colorPartido,
+                        Margin = new Thickness(x, canvasHeight - rectangleHeight, 0, 0)
+                    };
+
+                    rectangulo.ToolTip = "Partido: " + resultado.nombre + " Votos: " + resultado.votos;
+
+                    x += rectangleWidth + spaceBetweenRectangles;
+
+                    pnlResultados.Children.Add(rectangulo);
+                }
+                catch (FormatException e)
+                {
+                    throw new FormatException(Name, e);
+                }
+                
             }
 
         }
