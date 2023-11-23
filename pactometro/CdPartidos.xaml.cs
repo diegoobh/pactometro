@@ -74,20 +74,8 @@ namespace pactometro
                 btnAñadirPartido.IsEnabled = false;
             }
         }
-        /*
-        private void txtColor_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (((PropertyInfo)cmbColor.SelectedItem).Name.Length > 0 && txtPartidos.Text.Length > 0 && txtVotos.Text.Length > 0)
-            {
-                btnAñadirPartido.IsEnabled = true;
-            }
-            else
-            {
-                btnAñadirPartido.IsEnabled = false;
-            }
-        }*/
 
-        private void cmbVotos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cmbColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(cmbColor.SelectedItem != null)
             {

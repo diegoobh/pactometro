@@ -24,9 +24,9 @@ namespace pactometro
 {
     public partial class DataWindow : Window
     {
-        public MainWindow vPrincipal; 
+        public MainWindow vPrincipal; //instancia de la ventana ppal para dibujar las gráficas
 
-        ObservableCollection<Eleccion> elecciones; 
+        public ObservableCollection<Eleccion> elecciones; 
         public DataWindow(MainWindow principal)
         {
             InitializeComponent();
@@ -37,12 +37,11 @@ namespace pactometro
             vPrincipal = principal;
         }
 
-        private void añadirDatosPorDefecto() //datos hardcodeados de ejemplo de varias elecciones
+        private void añadirDatosPorDefecto() 
         {
             Eleccion elect = new Eleccion(); 
             elecciones = new ObservableCollection<Eleccion>();
             elecciones = elect.generarEleccionesDefecto(); 
-
         }
 
         private void upperTable_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,7 +58,7 @@ namespace pactometro
 
         private void btnAñadir_Click(object sender, RoutedEventArgs e)
         {
-            CDEleccion form1 = new CDEleccion(elecciones);
+            CDEleccion form1 = new CDEleccion(elecciones, vPrincipal);
             form1.Owner = this;
             form1.ShowDialog();
         }

@@ -10,6 +10,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,14 +31,24 @@ namespace pactometro
         DataWindow ventana2;
         public bool cerrarVentana2 = false;
 
-        Eleccion eleccion;  
+        Eleccion eleccion;
+        MenuItem item;
 
         public MainWindow()
         {
             InitializeComponent();
             ventana2 = new DataWindow(this);
             ventana2.Closing += ventana2_Closing; //añadimos nuestro propio método closing para la ventana de datos
-            ventana2.Show(); 
+            ventana2.Show();
+            
+            foreach(Eleccion proceso in ventana2.elecciones)
+            {
+                item = new MenuItem();
+                item.Header = proceso.nombreEleccion;
+                item.IsCheckable = true;
+                item.IsChecked = false; 
+                cmpProcesos.Items.Add(item);
+            }
 
         }
 

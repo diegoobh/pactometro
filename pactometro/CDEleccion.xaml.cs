@@ -26,13 +26,17 @@ namespace pactometro
         ObservableCollection<Eleccion> listaElecciones;
 
         Eleccion eleccion = new Eleccion();
-        public CDEleccion(ObservableCollection<Eleccion> elecciones)
+        MainWindow vPrincipal;
+        MenuItem item; 
+        public CDEleccion(ObservableCollection<Eleccion> elecciones, MainWindow ppal)
         {
             InitializeComponent();
             this.listaElecciones = elecciones;
             txtEleccion.Focus();    
             
             btnAceptar.IsEnabled = false;
+
+            vPrincipal = ppal;
         }
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -43,6 +47,12 @@ namespace pactometro
             eleccion.mayoriaAbs = eleccion.calculaMayoria(eleccion.totalEscanios);
 
             listaElecciones.Add(eleccion);
+
+            item = new MenuItem();
+            item.Header = eleccion.nombreEleccion;
+            item.IsCheckable = true;
+            item.IsChecked = false; 
+            vPrincipal.cmpProcesos.Items.Add(item);
 
             DialogResult = true;
         }
