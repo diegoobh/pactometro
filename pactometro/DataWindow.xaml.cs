@@ -72,6 +72,7 @@ namespace pactometro
                 elecciones.Remove(elect); 
             }
             upperTable.Items.Refresh();
+            vPrincipal.pnlResultados.Children.Clear(); 
         }
     }
 }

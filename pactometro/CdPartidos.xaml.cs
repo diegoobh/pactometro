@@ -30,10 +30,19 @@ namespace pactometro
             txtPartidos.Focus();
             this.partidos = listaPartidos;
             listaAñadidos.ItemsSource = partidos;
+
+            if (txtPartidos.Text.Length > 0 && txtColor.Text.Length > 0)
+            {
+                btnAñadirPartido.IsEnabled = true;
+            } else
+            {
+                btnAñadirPartido.IsEnabled = false;
+            }
         }
 
         private void btnAñadirPartido_Click(object sender, RoutedEventArgs e)
         {
+            
             nombre = txtPartidos.Text;
             votos = int.Parse(txtVotos.Text);
             color = txtColor.Text;
@@ -45,6 +54,42 @@ namespace pactometro
             txtVotos.Text = "";
             txtColor.Text = "";
             txtPartidos.Focus(); 
+        }
+
+        private void txtPartidos_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtColor.Text.Length > 0 && txtPartidos.Text.Length > 0 && txtVotos.Text.Length > 0)
+            {
+                btnAñadirPartido.IsEnabled = true;
+            }
+            else
+            {
+                btnAñadirPartido.IsEnabled = false;
+            }
+        }
+
+        private void txtVotos_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtColor.Text.Length > 0 && txtPartidos.Text.Length > 0 && txtVotos.Text.Length > 0)
+            {
+                btnAñadirPartido.IsEnabled = true;
+            }
+            else
+            {
+                btnAñadirPartido.IsEnabled = false;
+            }
+        }
+
+        private void txtColor_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtColor.Text.Length > 0 && txtPartidos.Text.Length > 0 && txtVotos.Text.Length > 0)
+            {
+                btnAñadirPartido.IsEnabled = true;
+            }
+            else
+            {
+                btnAñadirPartido.IsEnabled = false;
+            }
         }
     }
 }

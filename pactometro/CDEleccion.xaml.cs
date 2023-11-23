@@ -30,7 +30,9 @@ namespace pactometro
         {
             InitializeComponent();
             this.listaElecciones = elecciones;
-            txtEleccion.Focus();            
+            txtEleccion.Focus();    
+            
+            btnAceptar.IsEnabled = false;
         }
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -60,6 +62,41 @@ namespace pactometro
                 MessageBox.Show("Introduzca los datos de la elección primero.");
             }
 
+        }
+
+        private void txtEleccion_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(txtEleccion.Text.Length > 0 && txtEscanios.Text.Length > 0 && txtFecha.Text.Length > 0)
+            {
+                btnAceptar.IsEnabled = true;
+            } else
+            {
+                btnAceptar.IsEnabled=false;
+            }
+        }
+
+        private void txtEscanios_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtEleccion.Text.Length > 0 && txtEscanios.Text.Length > 0 && txtFecha.Text.Length > 0)
+            {
+                btnAceptar.IsEnabled = true;
+            }
+            else
+            {
+                btnAceptar.IsEnabled = false;
+            }
+        }
+
+        private void txtFecha_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (txtEleccion.Text.Length > 0 && txtEscanios.Text.Length > 0 && txtFecha.Text.Length > 0)
+            {
+                btnAceptar.IsEnabled = true;
+            }
+            else
+            {
+                btnAceptar.IsEnabled = false;
+            }
         }
     }
 }

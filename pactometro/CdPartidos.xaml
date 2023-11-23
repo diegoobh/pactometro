@@ -19,11 +19,11 @@
         </Grid.RowDefinitions>
 
         <Label Content="Partidos: " Grid.Row="0" Grid.Column="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
-        <TextBox Name="txtPartidos" Grid.Row="0" Grid.Column="1" Margin="10" Background="LightGray"/>
+        <TextBox Name="txtPartidos" Grid.Row="0" Grid.Column="1" Margin="10" Background="LightGray" TextChanged="txtPartidos_TextChanged"/>
         <Label Content="Votos: " Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
-        <TextBox Name="txtVotos" Grid.Row="1" Grid.Column="1" Margin="10" Background="LightGray"/>
+        <TextBox Name="txtVotos" Grid.Row="1" Grid.Column="1" Margin="10" Background="LightGray" TextChanged="txtVotos_TextChanged"/>
         <Label Content="Color: " Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
-        <TextBox Name="txtColor" Grid.Row="2" Grid.Column="1" Margin="10" Background="LightGray"/>
+        <TextBox Name="txtColor" Grid.Row="2" Grid.Column="1" Margin="10" Background="LightGray" TextChanged="txtColor_TextChanged"/>
 
         <ListView Name="listaAñadidos" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Margin="5">
             <ListView.View>
