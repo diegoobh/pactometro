@@ -30,8 +30,6 @@ namespace pactometro
         DataWindow ventana2;
         public bool cerrarVentana2 = false;
 
-        // ObservableCollection<Partido> resultadosEleccion;
-
         Eleccion eleccion;  
 
         public MainWindow()
@@ -57,7 +55,14 @@ namespace pactometro
 
         private void vista1_Click(object sender, RoutedEventArgs e)
         {
-            eleccion = (Eleccion)ventana2.upperTable.SelectedItem;
+            if(ventana2.upperTable.SelectedItem == null)
+            {
+                eleccion = (Eleccion)ventana2.upperTable.Items[0];
+            } else
+            {
+                eleccion = (Eleccion)ventana2.upperTable.SelectedItem;
+
+            }
             mostrarEleccion(eleccion);
         }
 
