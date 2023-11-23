@@ -140,10 +140,9 @@ namespace pactometro
                         Width = rectangleWidth, 
                         Height = rectangleHeight, 
                         Fill = colorPartido,
-                        Margin = new Thickness(x, canvasHeight - rectangleHeight, 0, 0)
-                    };
-
-                    rectangulo.ToolTip = "Partido: " + partido.nombre + " Votos: " + partido.votos;
+                        Margin = new Thickness(x, canvasHeight - rectangleHeight, 0, 0),
+                        ToolTip = "Partido: " + partido.nombre + " Votos: " + partido.votos
+                };
 
                     x += rectangleWidth + spaceBetweenRectangles;
 
