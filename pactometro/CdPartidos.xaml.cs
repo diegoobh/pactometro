@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,14 +31,8 @@ namespace pactometro
             txtPartidos.Focus();
             this.partidos = listaPartidos;
             listaAñadidos.ItemsSource = partidos;
+            cmbColor.ItemsSource = typeof(Colors).GetProperties();
 
-            if (txtPartidos.Text.Length > 0 && txtColor.Text.Length > 0)
-            {
-                btnAñadirPartido.IsEnabled = true;
-            } else
-            {
-                btnAñadirPartido.IsEnabled = false;
-            }
         }
 
         private void btnAñadirPartido_Click(object sender, RoutedEventArgs e)
@@ -45,20 +40,20 @@ namespace pactometro
             
             nombre = txtPartidos.Text;
             votos = int.Parse(txtVotos.Text);
-            color = txtColor.Text;
+            color = ((PropertyInfo)cmbColor.SelectedItem).Name;
 
             partido = new Partido(nombre, color, votos);
             partidos.Add(partido);
 
             txtPartidos.Text = "";
             txtVotos.Text = "";
-            txtColor.Text = "";
+            cmbColor.SelectedItem = cmbColor.Items[0];
             txtPartidos.Focus(); 
         }
 
         private void txtPartidos_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtColor.Text.Length > 0 && txtPartidos.Text.Length > 0 && txtVotos.Text.Length > 0)
+            if (txtPartidos.Text.Length > 0 && txtVotos.Text.Length > 0)
             {
                 btnAñadirPartido.IsEnabled = true;
             }
@@ -70,7 +65,7 @@ namespace pactometro
 
         private void txtVotos_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtColor.Text.Length > 0 && txtPartidos.Text.Length > 0 && txtVotos.Text.Length > 0)
+            if (txtPartidos.Text.Length > 0 && txtVotos.Text.Length > 0)
             {
                 btnAñadirPartido.IsEnabled = true;
             }
@@ -79,16 +74,24 @@ namespace pactometro
                 btnAñadirPartido.IsEnabled = false;
             }
         }
-
+        /*
         private void txtColor_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtColor.Text.Length > 0 && txtPartidos.Text.Length > 0 && txtVotos.Text.Length > 0)
+            if (((PropertyInfo)cmbColor.SelectedItem).Name.Length > 0 && txtPartidos.Text.Length > 0 && txtVotos.Text.Length > 0)
             {
                 btnAñadirPartido.IsEnabled = true;
             }
             else
             {
                 btnAñadirPartido.IsEnabled = false;
+            }
+        }*/
+
+        private void cmbVotos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(cmbColor.SelectedItem != null)
+            {
+                color = ((PropertyInfo)cmbColor.SelectedItem).Name;
             }
         }
     }

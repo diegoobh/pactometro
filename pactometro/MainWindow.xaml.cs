@@ -58,6 +58,7 @@ namespace pactometro
             if(ventana2.upperTable.SelectedItem == null)
             {
                 eleccion = (Eleccion)ventana2.upperTable.Items[0];
+                titulo.Content = eleccion.nombreEleccion; 
             } else
             {
                 eleccion = (Eleccion)ventana2.upperTable.SelectedItem;
