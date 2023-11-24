@@ -157,13 +157,23 @@ namespace pactometro
                         Width = rectangleWidth, 
                         Height = rectangleHeight, 
                         Fill = colorPartido,
-                        Margin = new Thickness(x, canvasHeight - rectangleHeight, 0, 0),
+                        Margin = new Thickness(x, canvasHeight - rectangleHeight - offsetInicial, 0, 0),
                         ToolTip = "Partido: " + partido.nombre + " Votos: " + partido.votos
-                };
+                    };
+
+                    TextBlock textBlock = new TextBlock()
+                    {
+                        Text = partido.nombre,
+                        Foreground = colorPartido,
+                        FontWeight = FontWeights.Bold,
+                        Margin = new Thickness(x, canvasHeight - 13, 0, 0), 
+                        MaxWidth = rectangleWidth
+                    };
 
                     x += rectangleWidth + spaceBetweenRectangles;
 
                     pnlResultados.Children.Add(rectangulo);
+                    pnlResultados.Children.Add(textBlock); 
                 }
                 catch (FormatException e)
                 {
