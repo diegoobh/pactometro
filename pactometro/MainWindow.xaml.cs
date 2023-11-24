@@ -184,52 +184,5 @@ namespace pactometro
 
         }
 
-        /*
-        private void mostrarEleccion() //ajustar al tamaño del canvas
-        {
-            //Datos de ejemplo
-            string[] partidos = { "PP", "PSOE", "VOX", "Sumar" };
-            int[] votos = { 450, 300, 200, 150 };
-
-            //Configuración de la gráfica
-            double maxVotos = votos.Max();
-            double anchoCanvas = pnlResultados.ActualWidth;
-            double anchoBarra = anchoCanvas / votos.Length;
-            double espaciado = 15; 
-
-            for(int i = 0; i < votos.Length; i++)
-            {
-                double altoBarra = (votos[i] / maxVotos) * (pnlResultados.ActualHeight - 2 * espaciado);
-                if (altoBarra < 0)
-                    altoBarra = 0; 
-                double x = i * (anchoBarra + espaciado); 
-                double y = pnlResultados.ActualHeight - anchoBarra - espaciado;
-
-                Rectangle barra = new Rectangle
-                { 
-                    Fill = Brushes.Blue,
-                    Width = anchoBarra,
-                    Height = altoBarra,
-                };
-
-                Canvas.SetLeft(barra, x);
-                Canvas.SetTop(barra, y);
-                pnlResultados.Children.Add(barra);
-
-                TextBlock label = new TextBlock
-                {
-                    Text = partidos[i],
-                    Foreground = Brushes.Black,
-                    TextAlignment = TextAlignment.Center,
-                    Margin = new Thickness(x, pnlResultados.ActualHeight - espaciado, 0, 0),
-                    Width = anchoBarra,
-                };
-
-                pnlResultados.Children.Add(label);
-            }
-
-            
-        }*/
-
     }
 }
