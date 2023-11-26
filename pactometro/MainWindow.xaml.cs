@@ -9,10 +9,10 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-//using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -100,7 +100,15 @@ namespace pactometro
                     }                  
                     break; 
                 case 2:
-                    //mostrarPactometro(); 
+                    if (ventana2.upperTable.SelectedItem == null)
+                    {
+                        eleccion = (Eleccion)ventana2.upperTable.Items[0];
+                    }
+                    else
+                    {
+                        eleccion = (Eleccion)ventana2.upperTable.SelectedItem;
+                    }
+                    mostrarPactometro(eleccion);
                     break; 
             }
             
@@ -146,7 +154,17 @@ namespace pactometro
 
         private void pactometro_Click(object sender, RoutedEventArgs e)
         {
-            //mostrarPactos(); 
+            clicked = 2;
+
+            if (ventana2.upperTable.SelectedItem == null)
+            {
+                eleccion = (Eleccion)ventana2.upperTable.Items[0];
+            }
+            else
+            {
+                eleccion = (Eleccion)ventana2.upperTable.SelectedItem;
+            }
+            mostrarPactometro(eleccion);
         }
 
         public void salir_Click(object sender, RoutedEventArgs e)
@@ -252,6 +270,7 @@ namespace pactometro
             double offsetInicial = 10;
             int numberOfRectangles = 0;
             int maxVotos = -9999;
+            double xInicial = offsetInicial;
 
             foreach (Eleccion eleccion in listaElecciones)
             {
@@ -265,8 +284,6 @@ namespace pactometro
             {
                 numberOfRectangles += elect.listaPartidos.Count(); 
 
-                
-
                 double minWidth = 100;
                 double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
                 double canvasHeight = pnlResultados.ActualHeight;
@@ -274,7 +291,7 @@ namespace pactometro
                 // Ajusta el ancho de los rectángulos según el espacio disponible
                 double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;
 
-                double x = offsetInicial; // posición inicial x
+                double x = xInicial; // posición inicial x
                 double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
 
                 foreach (Partido partido in elect.listaPartidos)
@@ -316,9 +333,100 @@ namespace pactometro
                         throw new FormatException(Name, e);
                     }
                 }
+                xInicial += offsetInicial + rectangleWidth;
             }
             
         }
 
+        public void mostrarPactometro(Eleccion eleccion)
+        {
+
+            pnlResultados.Children.Clear(); 
+
+            double mayoriaAbsoluta = eleccion.calculaMayoria(eleccion.totalEscanios);
+
+            int numberOfRectangles = eleccion.listaPartidos.Count;
+            int maxVotos = eleccion.obtenerMaxVotos();
+
+            double minWidth = 100;
+            double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
+            double canvasHeight = pnlResultados.ActualHeight;
+            double spaceBetweenRectangles = 10;
+            // Ajusta el ancho de los rectángulos según el espacio disponible
+            double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles) / numberOfRectangles;
+
+            double x = 30; // posición inicial x
+            double k = (pnlResultados.ActualHeight * 0.2) / maxVotos;
+
+            Grid grid = new Grid();
+            grid.ColumnDefinitions.Add(new ColumnDefinition()); // Columna 0
+            grid.ColumnDefinitions.Add(new ColumnDefinition()); // Columna 1
+            grid.Height = pnlResultados.ActualHeight; 
+            grid.Width = pnlResultados.ActualWidth;
+
+            Line line = new Line
+            {
+                Stroke = Brushes.Black,
+                StrokeThickness = 5,
+                Width = pnlResultados.ActualWidth,
+                X1 = 0,
+                X2 = 0,
+                Y1 = 0,
+                Y2 = 0
+            };
+
+            TextBox num = new TextBox
+            {
+                Text = mayoriaAbsoluta.ToString(),
+                Foreground = Brushes.Black,
+                FontWeight = FontWeights.Bold
+            };
+
+            Grid.SetColumnSpan(line, 2); // La línea abarca las dos columnas
+            Grid.SetColumn(num, 0); // La TextBox en la columna 0
+
+            grid.Children.Add(line);
+            grid.Children.Add(num);
+
+            foreach (Partido partido in eleccion.listaPartidos)
+            {
+                double rectangleHeight = partido.votos * k;
+
+                Color color = (Color)ColorConverter.ConvertFromString(partido.color);
+
+                Brush colorPartido = new SolidColorBrush(color);
+
+                Rectangle rectangulo = new Rectangle
+                {
+                    Width = rectangleWidth,
+                    Height = rectangleHeight,
+                    Fill = colorPartido,
+                    Margin = new Thickness(0, rectangleHeight, 0, 0),
+                    ToolTip = "Partido: " + partido.nombre + " Votos: " + partido.votos
+                };
+
+                // Agregar evento clic izquierdo
+                rectangulo.MouseLeftButtonDown += Rectangulo_MouseLeftButtonDown;
+
+                // Agregar el rectángulo a la columna 0
+                Grid.SetColumn(rectangulo, 0);
+                grid.Children.Add(rectangulo);
+
+                x += rectangleWidth + spaceBetweenRectangles;
+            }
+
+            // Añadir el grid a tu panel de resultados
+            pnlResultados.Children.Add(grid);
+        }
+
+        private void Rectangulo_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is Rectangle rectangulo)
+            {
+                int columnaActual = Grid.GetColumn(rectangulo);
+
+                Grid.SetColumn(rectangulo, columnaActual == 0 ? 1 : 0);
+            }
+        }
     }
 }
