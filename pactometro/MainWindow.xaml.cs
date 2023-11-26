@@ -9,7 +9,9 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+//using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -33,6 +36,10 @@ namespace pactometro
 
         Eleccion eleccion;
         MenuItem item;
+
+        Collection<Eleccion> listaElecciones;
+
+        int clicked = 0; 
 
         public MainWindow()
         {
@@ -50,22 +57,59 @@ namespace pactometro
                 cmpProcesos.Items.Add(item);
             }
 
+            listaElecciones = new Collection<Eleccion>();
+
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (ventana2.upperTable.SelectedItem == null)
+
+            switch (clicked)
             {
-                eleccion = (Eleccion)ventana2.upperTable.Items[0];
-            } else
-            {
-                eleccion = (Eleccion)ventana2.upperTable.SelectedItem;
+                case 0:
+                    if (ventana2.upperTable.SelectedItem == null)
+                    {
+                        eleccion = (Eleccion)ventana2.upperTable.Items[0];
+                    }
+                    else
+                    {
+                        eleccion = (Eleccion)ventana2.upperTable.SelectedItem;
+                    }
+                    mostrarEleccion(eleccion);
+                    break; 
+                case 1:
+                    if (listaElecciones.Count == 0) 
+                    { 
+                        pnlResultados.Children.Clear();
+                    } else
+                    {
+                        foreach (MenuItem item in cmpProcesos.Items)
+                        {
+                            if (item.IsChecked == true)
+                            {
+                                foreach (Eleccion elect in ventana2.upperTable.Items)
+                                {
+                                    if (item.Header.ToString() == elect.nombreEleccion)
+                                    {
+                                        listaElecciones.Add(elect);
+                                    }
+                                }
+                            }
+                        }
+                        mostrarHistorico(listaElecciones);
+                    }                  
+                    break; 
+                case 2:
+                    //mostrarPactometro(); 
+                    break; 
             }
-            mostrarEleccion(eleccion); 
+            
         }
 
-        private void vista1_Click(object sender, RoutedEventArgs e)
+        private void resultadoEleccion_Click(object sender, RoutedEventArgs e)
         {
+            clicked = 0; 
+
             if(ventana2.upperTable.SelectedItem == null)
             {
                 eleccion = (Eleccion)ventana2.upperTable.Items[0];
@@ -78,12 +122,29 @@ namespace pactometro
             mostrarEleccion(eleccion);
         }
 
-        private void vista2_Click(object sender, RoutedEventArgs e)
+        private void historico_Click(object sender, RoutedEventArgs e)
         {
-            //mostrarHistórico(); 
+            clicked = 1;
+
+            pnlResultados.Children.Clear();
+            listaElecciones.Clear(); 
+            foreach(MenuItem item in cmpProcesos.Items)
+            {
+                if(item.IsChecked == true)
+                {
+                    foreach (Eleccion elect in ventana2.upperTable.Items)
+                    {
+                        if(item.Header.ToString() == elect.nombreEleccion)
+                        {
+                            listaElecciones.Add(elect);
+                        }
+                    }
+                }
+            }
+            mostrarHistorico(listaElecciones); 
         }
 
-        private void vista3_Click(object sender, RoutedEventArgs e)
+        private void pactometro_Click(object sender, RoutedEventArgs e)
         {
             //mostrarPactos(); 
         }
@@ -141,7 +202,7 @@ namespace pactometro
             double x = offsetInicial; // posición inicial x
             double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
 
-            foreach (var partido in eleccion.listaPartidos)
+            foreach (Partido partido in eleccion.listaPartidos)
             {
                 // Ajusta la altura proporcionalmente al factor de escala
                 double rectangleHeight = partido.votos * k;
@@ -182,6 +243,81 @@ namespace pactometro
                 
             }
 
+        }
+
+        public void mostrarHistorico(Collection<Eleccion> listaElecciones)
+        {
+            pnlResultados.Children.Clear();
+    
+            double offsetInicial = 10;
+            int numberOfRectangles = 0;
+            int maxVotos = -9999;
+
+            foreach (Eleccion eleccion in listaElecciones)
+            {
+                if (eleccion.obtenerMaxVotos() >= maxVotos)
+                {
+                    maxVotos = eleccion.obtenerMaxVotos();
+                }
+            }
+            
+            foreach(Eleccion elect in listaElecciones)
+            {
+                numberOfRectangles += elect.listaPartidos.Count(); 
+
+                
+
+                double minWidth = 100;
+                double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
+                double canvasHeight = pnlResultados.ActualHeight;
+                double spaceBetweenRectangles = 10;
+                // Ajusta el ancho de los rectángulos según el espacio disponible
+                double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;
+
+                double x = offsetInicial; // posición inicial x
+                double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
+
+                foreach (Partido partido in elect.listaPartidos)
+                {
+                    // Ajusta la altura proporcionalmente al factor de escala
+                    double rectangleHeight = partido.votos * k;
+
+                    try
+                    {
+                        Color color = (Color)ColorConverter.ConvertFromString(partido.color);
+
+                        Brush colorPartido = new SolidColorBrush(color);
+
+                        Rectangle rectangulo = new Rectangle
+                        {
+                            Width = rectangleWidth,
+                            Height = rectangleHeight,
+                            Fill = colorPartido,
+                            Margin = new Thickness(x, canvasHeight - rectangleHeight - offsetInicial, 0, 0),
+                            ToolTip = "Partido: " + partido.nombre + " Votos: " + partido.votos
+                        };
+
+                        TextBlock textBlock = new TextBlock()
+                        {
+                            Text = partido.nombre,
+                            Foreground = colorPartido,
+                            FontWeight = FontWeights.Bold,
+                            Margin = new Thickness(x, canvasHeight - 13, 0, 0),
+                            MaxWidth = rectangleWidth
+                        };
+
+                        x += rectangleWidth + spaceBetweenRectangles;
+
+                        pnlResultados.Children.Add(rectangulo);
+                        pnlResultados.Children.Add(textBlock);
+                    }
+                    catch (FormatException e)
+                    {
+                        throw new FormatException(Name, e);
+                    }
+                }
+            }
+            
         }
 
     }

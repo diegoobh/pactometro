@@ -16,11 +16,11 @@
 
             <Menu Grid.Row="0" Width="200" Margin="5" >
                 <MenuItem Header="_Opciones" Width="190" Margin="5">
-                <MenuItem Header="_Resultados de la Elección" Click="vista1_Click"/>
-                <MenuItem Header="_Comparar procesos electorales" Click="vista2_Click" Name="cmpProcesos">
+                <MenuItem Header="_Resultados de la Elección" Click="resultadoEleccion_Click"/>
+                <MenuItem Header="_Comparar procesos electorales" Click="historico_Click" Name="cmpProcesos">
                     
                 </MenuItem>
-                <MenuItem Header="_Simular pactos" Click="vista3_Click"/>
+                <MenuItem Header="_Simular pactos" Click="pactometro_Click"/>
                     <MenuItem Header="_Ventana de datos" Click="vistaDatos_Click"/>
                     <Separator/>
                     <MenuItem Header="_Salir" Click="salir_Click"/>
