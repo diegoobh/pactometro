@@ -6,25 +6,12 @@
 
 
 using System;
-using System.CodeDom;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-//using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Effects;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace pactometro
@@ -366,10 +353,36 @@ namespace pactometro
             double k = (pnlResultados.ActualHeight * 0.2) / maxVotos;
 
             Grid grid = new Grid();
-            grid.ColumnDefinitions.Add(new ColumnDefinition()); // Columna 0
-            grid.ColumnDefinitions.Add(new ColumnDefinition()); // Columna 1
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
+            grid.ColumnDefinitions.Add(new ColumnDefinition());
             grid.Height = pnlResultados.ActualHeight; 
             grid.Width = pnlResultados.ActualWidth;
+
+            Line line = new Line
+            {
+                Stroke = Brushes.Red,
+                StrokeThickness = 3,
+                Width = pnlResultados.ActualWidth,
+                X1 = 0,
+                X2 = pnlResultados.ActualWidth,
+                Y1 = canvasHeight / 2,
+                Y2 = canvasHeight / 2, 
+                
+            };
+
+            Grid.SetColumnSpan(line, 2);
+            Grid.SetColumn(line, 0);
+
+
+            Label num = new Label
+            {
+                Content = mayoriaAbsoluta.ToString(),
+                Foreground = Brushes.Black,
+                FontWeight = FontWeights.Bold, 
+                Margin = new Thickness(0, canvasHeight / 2, 0, 0)
+            };
+            
+            Grid.SetColumn(num, 0);
 
             panel1 = new StackPanel();
             panel1.Width = grid.Width / 2;
@@ -378,29 +391,8 @@ namespace pactometro
 
             panel2 = new StackPanel();
             panel2.Width = grid.Width / 2;
-            panel2.Height = grid.Height / 2; 
+            panel2.Height = grid.Height / 2;
             Grid.SetColumn(panel2, 1);
-
-            Line line = new Line
-            {
-                Stroke = Brushes.Black,
-                StrokeThickness = 5,
-                Width = pnlResultados.ActualWidth,
-                X1 = 0,
-                X2 = 0,
-                Y1 = 0,
-                Y2 = 0
-            };
-
-            TextBox num = new TextBox
-            {
-                Text = mayoriaAbsoluta.ToString(),
-                Foreground = Brushes.Black,
-                FontWeight = FontWeights.Bold
-            };
-
-            Grid.SetColumnSpan(line, 2); // La línea abarca las dos columnas
-            Grid.SetColumn(num, 0); // La TextBox en la columna 0
 
             grid.Children.Add(line);
             grid.Children.Add(num);
