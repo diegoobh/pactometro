@@ -348,7 +348,7 @@ namespace pactometro
             double canvasHeight = pnlResultados.ActualHeight;
             double spaceBetweenRectangles = 10;
             // Ajusta el ancho de los rectángulos según el espacio disponible
-            double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles) / numberOfRectangles;
+            double rectangleWidth = canvasWidth / 4;
 
             double x = 30; 
             double k = (pnlResultados.ActualHeight * 0.2) / maxVotos;

@@ -59,11 +59,13 @@ namespace pactometro
                         break;
                     case 2:
                         if (upperTable.SelectedItem == null)
-                        {
+                        { 
+                            vPrincipal.titulo.Content = "EL PACTÓMETRO"; 
                             elect = (Eleccion)upperTable.Items[0];
                         }
                         else
                         {
+                            vPrincipal.titulo.Content = elect.nombreEleccion;
                             elect = (Eleccion)upperTable.SelectedItem;
                         }
                         vPrincipal.mostrarPactometro(elect);
