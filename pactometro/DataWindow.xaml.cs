@@ -14,7 +14,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -51,8 +50,32 @@ namespace pactometro
             if (elect != null)
             {
                lowerTable.ItemsSource = elect.listaPartidos;
-               vPrincipal.mostrarEleccion(elect);
-               vPrincipal.titulo.Content = elect.nombreEleccion;
+                switch (vPrincipal.clicked)
+                {
+                    case 0:
+                        if (upperTable.SelectedItem == null)
+                        {
+                            elect = (Eleccion)upperTable.Items[0];
+                        }
+                        else
+                        {
+                            elect = (Eleccion)upperTable.SelectedItem;
+                        }
+                        vPrincipal.mostrarEleccion(elect);
+                        break;
+                    case 2:
+                        if (upperTable.SelectedItem == null)
+                        {
+                            elect = (Eleccion)upperTable.Items[0];
+                        }
+                        else
+                        {
+                            elect = (Eleccion)upperTable.SelectedItem;
+                        }
+                        vPrincipal.mostrarPactometro(elect);
+                        break;
+                }
+                vPrincipal.titulo.Content = elect.nombreEleccion; 
             }
         }
 
@@ -71,7 +94,15 @@ namespace pactometro
                 elecciones.Remove(elect); 
             }
             upperTable.Items.Refresh();
-            vPrincipal.pnlResultados.Children.Clear(); 
+            vPrincipal.pnlResultados.Children.Clear();
+
+            foreach (MenuItem item in vPrincipal.cmpProcesos.Items)
+            {
+                if (item.Header.ToString() == elect.nombreEleccion)
+                {
+                    vPrincipal.cmpProcesos.Items.Remove(item);
+                }
+            }
         }
     }
 }

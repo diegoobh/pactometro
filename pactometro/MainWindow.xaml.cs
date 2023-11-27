@@ -19,6 +19,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+//using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
@@ -39,7 +40,10 @@ namespace pactometro
 
         Collection<Eleccion> listaElecciones;
 
-        int clicked = 0; 
+        StackPanel panel1; 
+        StackPanel panel2;
+
+        public int clicked = 0; 
 
         public MainWindow()
         {
@@ -78,6 +82,7 @@ namespace pactometro
                     mostrarEleccion(eleccion);
                     break; 
                 case 1:
+                    titulo.Content = "COMPARADOR ELECCIONES";
                     if (listaElecciones.Count == 0) 
                     { 
                         pnlResultados.Children.Clear();
@@ -135,7 +140,9 @@ namespace pactometro
             clicked = 1;
 
             pnlResultados.Children.Clear();
-            listaElecciones.Clear(); 
+            listaElecciones.Clear();
+
+            titulo.Content = "COMPARADOR ELECCIONES";
             foreach(MenuItem item in cmpProcesos.Items)
             {
                 if(item.IsChecked == true)
@@ -364,6 +371,16 @@ namespace pactometro
             grid.Height = pnlResultados.ActualHeight; 
             grid.Width = pnlResultados.ActualWidth;
 
+            panel1 = new StackPanel();
+            panel1.Width = grid.Width / 2;
+            panel1.Height = grid.Height / 2;
+            Grid.SetColumn(panel1, 0);
+
+            panel2 = new StackPanel();
+            panel2.Width = grid.Width / 2;
+            panel2.Height = grid.Height / 2; 
+            Grid.SetColumn(panel2, 1);
+
             Line line = new Line
             {
                 Stroke = Brushes.Black,
@@ -387,6 +404,8 @@ namespace pactometro
 
             grid.Children.Add(line);
             grid.Children.Add(num);
+            grid.Children.Add(panel1);
+            grid.Children.Add(panel2);
 
             foreach (Partido partido in eleccion.listaPartidos)
             {
@@ -401,7 +420,6 @@ namespace pactometro
                     Width = rectangleWidth,
                     Height = rectangleHeight,
                     Fill = colorPartido,
-                    Margin = new Thickness(0, rectangleHeight, 0, 0),
                     ToolTip = "Partido: " + partido.nombre + " Votos: " + partido.votos
                 };
 
@@ -409,8 +427,7 @@ namespace pactometro
                 rectangulo.MouseLeftButtonDown += Rectangulo_MouseLeftButtonDown;
 
                 // Agregar el rectángulo a la columna 0
-                Grid.SetColumn(rectangulo, 0);
-                grid.Children.Add(rectangulo);
+                panel1.Children.Add(rectangulo);
 
                 x += rectangleWidth + spaceBetweenRectangles;
             }
@@ -423,9 +440,15 @@ namespace pactometro
         {
             if (sender is Rectangle rectangulo)
             {
-                int columnaActual = Grid.GetColumn(rectangulo);
-
-                Grid.SetColumn(rectangulo, columnaActual == 0 ? 1 : 0);
+                if (panel1.Children.Contains(rectangulo))
+                {
+                    panel1.Children.Remove(rectangulo);
+                    panel2.Children.Add(rectangulo);
+                } else
+                {
+                    panel2.Children.Remove(rectangulo);
+                    panel1.Children.Add(rectangulo);
+                }
             }
         }
     }
