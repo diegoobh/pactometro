@@ -49,9 +49,13 @@ namespace pactometro
                         }
                         else
                         {
+                            vPrincipal.titulo.Content = elect.nombreEleccion;
                             elect = (Eleccion)upperTable.SelectedItem;
                         }
                         vPrincipal.mostrarEleccion(elect);
+                        break;
+                    case 1: 
+                        vPrincipal.titulo.Content = "COMPARADOR RESULTADOS";
                         break;
                     case 2:
                         if (upperTable.SelectedItem == null)
@@ -64,8 +68,11 @@ namespace pactometro
                         }
                         vPrincipal.mostrarPactometro(elect);
                         break;
+                    default: 
+                        vPrincipal.titulo.Content = "EL PACTÓMETRO";
+                        break;
                 }
-                vPrincipal.titulo.Content = elect.nombreEleccion; 
+                 
             }
         }
 

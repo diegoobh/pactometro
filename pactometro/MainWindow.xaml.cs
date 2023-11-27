@@ -61,6 +61,7 @@ namespace pactometro
                 case 0:
                     if (ventana2.upperTable.SelectedItem == null)
                     {
+                        titulo.Content = "EL PACTÓMETRO";
                         eleccion = (Eleccion)ventana2.upperTable.Items[0];
                     }
                     else
@@ -213,12 +214,11 @@ namespace pactometro
             // Ajusta el ancho de los rectángulos según el espacio disponible
             double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;           
 
-            double x = offsetInicial; // posición inicial x
+            double x = offsetInicial; 
             double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
 
             foreach (Partido partido in eleccion.listaPartidos)
             {
-                // Ajusta la altura proporcionalmente al factor de escala
                 double rectangleHeight = partido.votos * k;
 
                 try
@@ -268,7 +268,6 @@ namespace pactometro
             int maxVotos = -9999;
             double xInicial = offsetInicial;
 
-
             foreach (Eleccion eleccion in listaElecciones)
             {
                 if (eleccion.obtenerMaxVotos() >= maxVotos)
@@ -284,15 +283,15 @@ namespace pactometro
             double spaceBetweenRectangles = 10;
             // Ajusta el ancho de los rectángulos según el espacio disponible
             double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;
-
-            double x = xInicial; // posición inicial x
+   
             double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
 
             foreach (Eleccion elect in listaElecciones)
-            { 
+            {
+                double x = xInicial;
+
                 foreach (Partido partido in elect.listaPartidos)
                 {
-                    // Ajusta la altura proporcionalmente al factor de escala
                     double rectangleHeight = partido.votos * k;
 
                     try
@@ -351,7 +350,7 @@ namespace pactometro
             // Ajusta el ancho de los rectángulos según el espacio disponible
             double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles) / numberOfRectangles;
 
-            double x = 30; // posición inicial x
+            double x = 30; 
             double k = (pnlResultados.ActualHeight * 0.2) / maxVotos;
 
             Grid grid = new Grid();
@@ -417,16 +416,13 @@ namespace pactometro
                     ToolTip = "Partido: " + partido.nombre + " Votos: " + partido.votos
                 };
 
-                // Agregar evento clic izquierdo
                 rectangulo.MouseLeftButtonDown += Rectangulo_MouseLeftButtonDown;
 
-                // Agregar el rectángulo a la columna 0
                 panel1.Children.Add(rectangulo);
 
                 x += rectangleWidth + spaceBetweenRectangles;
             }
 
-            // Añadir el grid a tu panel de resultados
             pnlResultados.Children.Add(grid);
         }
 
