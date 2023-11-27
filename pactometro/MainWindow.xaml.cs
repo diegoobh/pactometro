@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Shapes;
 
 namespace pactometro
@@ -75,6 +76,7 @@ namespace pactometro
                         pnlResultados.Children.Clear();
                     } else
                     {
+                        listaElecciones.Clear();
                         foreach (MenuItem item in cmpProcesos.Items)
                         {
                             if (item.IsChecked == true)
@@ -266,28 +268,28 @@ namespace pactometro
             int maxVotos = -9999;
             double xInicial = offsetInicial;
 
+
             foreach (Eleccion eleccion in listaElecciones)
             {
                 if (eleccion.obtenerMaxVotos() >= maxVotos)
                 {
                     maxVotos = eleccion.obtenerMaxVotos();
+                    numberOfRectangles += eleccion.listaPartidos.Count();
                 }
             }
-            
-            foreach(Eleccion elect in listaElecciones)
-            {
-                numberOfRectangles += elect.listaPartidos.Count(); 
 
-                double minWidth = 100;
-                double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
-                double canvasHeight = pnlResultados.ActualHeight;
-                double spaceBetweenRectangles = 10;
-                // Ajusta el ancho de los rectángulos según el espacio disponible
-                double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;
+            double minWidth = 100;
+            double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
+            double canvasHeight = pnlResultados.ActualHeight;
+            double spaceBetweenRectangles = 10;
+            // Ajusta el ancho de los rectángulos según el espacio disponible
+            double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;
 
-                double x = xInicial; // posición inicial x
-                double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
+            double x = xInicial; // posición inicial x
+            double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
 
+            foreach (Eleccion elect in listaElecciones)
+            { 
                 foreach (Partido partido in elect.listaPartidos)
                 {
                     // Ajusta la altura proporcionalmente al factor de escala
