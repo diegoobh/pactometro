@@ -268,69 +268,73 @@ namespace pactometro
             int maxVotos = -9999;
             double xInicial = offsetInicial;
 
-            foreach (Eleccion eleccion in listaElecciones)
+            if (listaElecciones.Count > 1)
             {
-                if (eleccion.obtenerMaxVotos() >= maxVotos)
+
+                foreach (Eleccion eleccion in listaElecciones)
                 {
-                    maxVotos = eleccion.obtenerMaxVotos();
+                    if (eleccion.obtenerMaxVotos() >= maxVotos)
+                    {
+                        maxVotos = eleccion.obtenerMaxVotos();
+                    }
                     numberOfRectangles += eleccion.listaPartidos.Count();
                 }
-            }
 
-            double minWidth = 100;
-            double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
-            double canvasHeight = pnlResultados.ActualHeight;
-            double spaceBetweenRectangles = 10;
-            // Ajusta el ancho de los rectángulos según el espacio disponible
-            double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;
-   
-            double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
+                double minWidth = 100;
+                double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
+                double canvasHeight = pnlResultados.ActualHeight;
+                double spaceBetweenRectangles = 10;
+                // Ajusta el ancho de los rectángulos según el espacio disponible
+                double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;
 
-            foreach (Eleccion elect in listaElecciones)
-            {
-                double x = xInicial;
+                double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
 
-                foreach (Partido partido in elect.listaPartidos)
+                foreach (Eleccion elect in listaElecciones)
                 {
-                    double rectangleHeight = partido.votos * k;
+                    double x = xInicial;
 
-                    try
+                    foreach (Partido partido in elect.listaPartidos)
                     {
-                        Color color = (Color)ColorConverter.ConvertFromString(partido.color);
+                        double rectangleHeight = partido.votos * k;
 
-                        Brush colorPartido = new SolidColorBrush(color);
-
-                        Rectangle rectangulo = new Rectangle
+                        try
                         {
-                            Width = rectangleWidth,
-                            Height = rectangleHeight,
-                            Fill = colorPartido,
-                            Margin = new Thickness(x, canvasHeight - rectangleHeight - offsetInicial, 0, 0),
-                            ToolTip = "Partido: " + partido.nombre + " Votos: " + partido.votos
-                        };
+                            Color color = (Color)ColorConverter.ConvertFromString(partido.color);
 
-                        TextBlock textBlock = new TextBlock()
+                            Brush colorPartido = new SolidColorBrush(color);
+
+                            Rectangle rectangulo = new Rectangle
+                            {
+                                Width = rectangleWidth,
+                                Height = rectangleHeight,
+                                Fill = colorPartido,
+                                Margin = new Thickness(x, canvasHeight - rectangleHeight - offsetInicial, 0, 0),
+                                ToolTip = "Partido: " + partido.nombre + " Votos: " + partido.votos
+                            };
+
+                            TextBlock textBlock = new TextBlock()
+                            {
+                                Text = partido.nombre,
+                                Foreground = colorPartido,
+                                FontWeight = FontWeights.Bold,
+                                Margin = new Thickness(x, canvasHeight - 13, 0, 0),
+                                MaxWidth = rectangleWidth
+                            };
+
+                            x += rectangleWidth + spaceBetweenRectangles;
+
+                            pnlResultados.Children.Add(rectangulo);
+                            pnlResultados.Children.Add(textBlock);
+                        }
+                        catch (FormatException e)
                         {
-                            Text = partido.nombre,
-                            Foreground = colorPartido,
-                            FontWeight = FontWeights.Bold,
-                            Margin = new Thickness(x, canvasHeight - 13, 0, 0),
-                            MaxWidth = rectangleWidth
-                        };
-
-                        x += rectangleWidth + spaceBetweenRectangles;
-
-                        pnlResultados.Children.Add(rectangulo);
-                        pnlResultados.Children.Add(textBlock);
+                            throw new FormatException(Name, e);
+                        }
                     }
-                    catch (FormatException e)
-                    {
-                        throw new FormatException(Name, e);
-                    }
+                    xInicial += offsetInicial + rectangleWidth;
                 }
-                xInicial += offsetInicial + rectangleWidth;
             }
-            
+  
         }
 
         public void mostrarPactometro(Eleccion eleccion)
