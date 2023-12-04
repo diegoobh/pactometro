@@ -290,15 +290,13 @@ namespace pactometro
                 double x = xInicial;
                 double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
 
-                //foreach (Eleccion elect in listaElecciones)
                 var partidosPorNombre = listaElecciones
-                .SelectMany(e => e.listaPartidos)
+                .SelectMany(e => e.listaPartidos) //seleccionas una eleccion y coges la lista de partidos
                 .GroupBy(partido => partido.nombre);
 
                 foreach (var grupoPartidos in partidosPorNombre)
                 {
-
-                    foreach (Partido partido in grupoPartidos)//elect.listaPartidos)
+                    foreach (Partido partido in grupoPartidos)
                     {
                         double rectangleHeight = partido.votos * k;
 
