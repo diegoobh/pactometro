@@ -287,13 +287,18 @@ namespace pactometro
                 // Ajusta el ancho de los rectángulos según el espacio disponible
                 double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;
 
+                double x = xInicial;
                 double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
 
-                foreach (Eleccion elect in listaElecciones)
-                {
-                    double x = xInicial;
+                //foreach (Eleccion elect in listaElecciones)
+                var partidosPorNombre = listaElecciones
+                .SelectMany(e => e.listaPartidos)
+                .GroupBy(partido => partido.nombre);
 
-                    foreach (Partido partido in elect.listaPartidos)
+                foreach (var grupoPartidos in partidosPorNombre)
+                {
+
+                    foreach (Partido partido in grupoPartidos)//elect.listaPartidos)
                     {
                         double rectangleHeight = partido.votos * k;
 
@@ -331,7 +336,7 @@ namespace pactometro
                             throw new FormatException(Name, e);
                         }
                     }
-                    xInicial += offsetInicial + rectangleWidth;
+                    xInicial += offsetInicial;
                 }
             }
   

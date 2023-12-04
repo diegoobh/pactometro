@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:pactometro"
         mc:Ignorable="d"
         Title="EL PACTÓMETRO" Height="450" Width="800" Background="LightSeaGreen" Name ="mainWindow"
-        SizeChanged="Window_SizeChanged" Closing="mainWindow_Closing" MinHeight="300" MinWidth="300">
+        SizeChanged="Window_SizeChanged" Closing="mainWindow_Closing" MinHeight="300" MinWidth="500">
 
         <Grid>
             <Grid.RowDefinitions>
