@@ -268,7 +268,7 @@ namespace pactometro
             int maxVotos = -9999;
             double xInicial = offsetInicial;
 
-            if (listaElecciones.Count > 1)
+            if (listaElecciones.Count >= 1)
             {
 
                 foreach (Eleccion eleccion in listaElecciones)
