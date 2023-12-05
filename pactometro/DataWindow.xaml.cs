@@ -13,9 +13,9 @@ namespace pactometro
 {
     public partial class DataWindow : Window
     {
-        public MainWindow vPrincipal; //instancia de la ventana ppal para dibujar las gráficas
+        public MainWindow vPrincipal; //instancia de la ventana principal para dibujar las gráficas
 
-        public ObservableCollection<Eleccion> elecciones; 
+        public ObservableCollection<Eleccion> elecciones; //colección de elecciones por defecto
         public DataWindow(MainWindow principal)
         {
             InitializeComponent();
@@ -99,7 +99,7 @@ namespace pactometro
             {
                 if (item.Header.ToString() == elect.nombreEleccion)
                 {
-                    vPrincipal.cmpProcesos.Items.Remove(item);
+                    vPrincipal.cmpProcesos.Items.Remove(item); //eliminar el proceso electoral del menú de procesos (no funciona)
                 }
             }*/
         }

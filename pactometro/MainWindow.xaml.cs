@@ -174,7 +174,7 @@ namespace pactometro
             if (ventana2 == null) //si no existe o no está visible instanciamos una nueva ventana
             {
                 ventana2 = new DataWindow(this);
-                ventana2.Closed += (s, args) => { cerrarVentana2 = false; }; //operador lambda, pasamos el sender y los argumentos
+                ventana2.Closed += (s, args) => { cerrarVentana2 = true; }; 
             }
 
             ventana2.Show();
@@ -353,11 +353,9 @@ namespace pactometro
             double minWidth = 100;
             double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
             double canvasHeight = pnlResultados.ActualHeight;
-            double spaceBetweenRectangles = 10;
             // Ajusta el ancho de los rectángulos según el espacio disponible
             double rectangleWidth = canvasWidth / 4;
 
-            double x = 30; 
             double k = (pnlResultados.ActualHeight * 0.2) / maxVotos;
 
             Grid grid = new Grid();
@@ -373,24 +371,24 @@ namespace pactometro
                 Width = pnlResultados.ActualWidth,
                 X1 = 0,
                 X2 = pnlResultados.ActualWidth,
-                Y1 = canvasHeight / 2,
-                Y2 = canvasHeight / 2, 
-                
-            };
+                Y1 = canvasHeight / 2 + 5,
+                Y2 = canvasHeight / 2 + 5
 
+            };
             Grid.SetColumnSpan(line, 2);
             Grid.SetColumn(line, 0);
-
 
             Label num = new Label
             {
                 Content = mayoriaAbsoluta.ToString(),
                 Foreground = Brushes.Black,
-                FontWeight = FontWeights.Bold, 
+                FontWeight = FontWeights.Bold,
                 Margin = new Thickness(0, canvasHeight / 2, 0, 0)
             };
-            
             Grid.SetColumn(num, 0);
+
+            grid.Children.Add(line);
+            grid.Children.Add(num);
 
             panel1 = new StackPanel();
             panel1.Width = grid.Width / 2;
@@ -402,8 +400,6 @@ namespace pactometro
             panel2.Height = grid.Height / 2;
             Grid.SetColumn(panel2, 1);
 
-            grid.Children.Add(line);
-            grid.Children.Add(num);
             grid.Children.Add(panel1);
             grid.Children.Add(panel2);
 
@@ -425,9 +421,8 @@ namespace pactometro
 
                 rectangulo.MouseLeftButtonDown += Rectangulo_MouseLeftButtonDown;
 
-                panel1.Children.Add(rectangulo);
+                panel1.Children.Insert(0, rectangulo);
 
-                x += rectangleWidth + spaceBetweenRectangles;
             }
 
             pnlResultados.Children.Add(grid);
@@ -440,11 +435,11 @@ namespace pactometro
                 if (panel1.Children.Contains(rectangulo))
                 {
                     panel1.Children.Remove(rectangulo);
-                    panel2.Children.Add(rectangulo);
+                    panel2.Children.Insert(0, rectangulo);
                 } else
                 {
                     panel2.Children.Remove(rectangulo);
-                    panel1.Children.Add(rectangulo);
+                    panel1.Children.Insert(0, rectangulo);
                 }
             }
         }
