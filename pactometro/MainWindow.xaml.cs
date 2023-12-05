@@ -371,7 +371,7 @@ namespace pactometro
                 Width = pnlResultados.ActualWidth,
                 X1 = 0,
                 X2 = pnlResultados.ActualWidth,
-                Y1 = canvasHeight / 2 + 5,
+                Y1 = canvasHeight / 2 + 5, //ver dónde colocar la línea para que cumpla la mayoria absoluta
                 Y2 = canvasHeight / 2 + 5
 
             };
