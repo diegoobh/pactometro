@@ -21,7 +21,7 @@
         <Label Content="Partidos: " Grid.Row="0" Grid.Column="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
         <TextBox Name="txtPartidos" Grid.Row="0" Grid.Column="1" Margin="10" Background="LightGray" TextChanged="txtPartidos_TextChanged"/>
         <Label Content="Votos: " Grid.Row="1" Grid.Column="0" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"/>
-        <TextBox Name="txtVotos" Grid.Row="1" Grid.Column="1" Margin="10" Background="LightGray" TextChanged="txtVotos_TextChanged"/>
+        <TextBox Name="txtVotos" Grid.Row="1" Grid.Column="1" Margin="10" Background="LightGray" TextChanged="txtVotos_TextChanged" PreviewTextInput="txtVotos_PreviewTextInput"/>
         <Label Content="Color: " Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
         <ComboBox Name="cmbColor" Grid.Row="2" Grid.Column="1" Margin="10" SelectionChanged="cmbColor_SelectionChanged">
             <ComboBox.ItemTemplate>

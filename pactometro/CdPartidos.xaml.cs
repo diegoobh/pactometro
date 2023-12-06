@@ -82,5 +82,13 @@ namespace pactometro
                 color = ((PropertyInfo)cmbColor.SelectedItem).Name;
             }
         }
+
+        private void txtVotos_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!int.TryParse(e.Text, out _))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

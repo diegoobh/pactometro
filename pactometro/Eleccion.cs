@@ -181,7 +181,7 @@ namespace pactometro
             elecciones[2].listaPartidos[1].color = "Red";
             elecciones[2].listaPartidos[2].nombre = "VOX";
             elecciones[2].listaPartidos[2].votos = 13;
-            elecciones[2].listaPartidos[2].color = "Green";
+            elecciones[2].listaPartidos[2].color = "lightGreen";
             elecciones[2].listaPartidos[3].nombre = "UPL";
             elecciones[2].listaPartidos[3].votos = 3;
             elecciones[2].listaPartidos[3].color = "DarkMagenta";
@@ -228,7 +228,7 @@ namespace pactometro
             elecciones[3].listaPartidos[5].color = "Purple";
             elecciones[3].listaPartidos[6].nombre = "VOX";
             elecciones[3].listaPartidos[6].votos = 1;
-            elecciones[3].listaPartidos[6].color = "Green";
+            elecciones[3].listaPartidos[6].color = "lightGreen";
 
             elecciones[4].nombreEleccion = "Autonómicas Comunidad de CASTILLA y LEÓN 24-05-2015";
             elecciones[4].fecha = DateTime.Parse("24/05/2015");

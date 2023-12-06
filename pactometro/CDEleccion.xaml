@@ -27,7 +27,7 @@
         <Label Content="Fecha: " Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Left" FontWeight="Bold"/>
         <DatePicker Name="txtFecha" Grid.Row="1" Grid.Column="1" Margin="10" SelectedDateChanged="txtFecha_SelectedDateChanged"/>
         <Label Content="Escaños: " Grid.Row="2" Grid.Column="0" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
-        <TextBox Name="txtEscanios" Grid.Row="2" Grid.Column="1" Margin="10" Background="LightGray" TextChanged="txtEscanios_TextChanged"/>
+        <TextBox Name="txtEscanios" Grid.Row="2" Grid.Column="1" Margin="10" Background="LightGray" TextChanged="txtEscanios_TextChanged" PreviewTextInput="txtEscanios_PreviewTextInput"/>
 
         <Button Name="btnAñadirPartidos" Content="Añadir partidos" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="10" Padding="5" Width="100" Click="btnAñadirPartidos_Click"/>
 

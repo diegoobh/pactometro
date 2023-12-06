@@ -28,15 +28,15 @@ namespace pactometro
         Eleccion eleccion = new Eleccion();
         MainWindow vPrincipal;
         MenuItem item; 
-        public CDEleccion(ObservableCollection<Eleccion> elecciones, MainWindow ppal)
+        public CDEleccion(ObservableCollection<Eleccion> elecciones, MainWindow principal)
         {
             InitializeComponent();
-            this.listaElecciones = elecciones;
+            listaElecciones = elecciones;
             txtEleccion.Focus();    
             
             btnAceptar.IsEnabled = false;
 
-            vPrincipal = ppal;
+            vPrincipal = principal;
         }
 
         private void btnAceptar_Click(object sender, RoutedEventArgs e)
@@ -106,6 +106,14 @@ namespace pactometro
             else
             {
                 btnAceptar.IsEnabled = false;
+            }
+        }
+
+        private void txtEscanios_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!int.TryParse(e.Text, out _))
+            {
+                e.Handled = true;
             }
         }
     }
