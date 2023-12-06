@@ -31,7 +31,13 @@ namespace pactometro
         StackPanel panel1; 
         StackPanel panel2;
 
-        public int clicked = 0; 
+        public int clicked = 0;
+
+        public double sumaVotos = 0;
+        public double sumaVotos2 = 0;
+
+        Label votosColumna;
+        Label votosColumna2; 
 
         public MainWindow()
         {
@@ -342,6 +348,8 @@ namespace pactometro
 
         public void mostrarPactometro(Eleccion eleccion)
         {
+            sumaVotos = 0;
+            sumaVotos2 = 0; 
 
             pnlResultados.Children.Clear(); 
 
@@ -423,7 +431,27 @@ namespace pactometro
 
                 panel1.Children.Insert(0, rectangulo);
 
+                sumaVotos += partido.votos;
             }
+
+            votosColumna = new Label
+            {
+                Content = sumaVotos.ToString(),
+                Foreground = Brushes.Black,
+                FontWeight = FontWeights.Bold,
+                Margin = new Thickness(pnlResultados.ActualWidth / 4, pnlResultados.ActualHeight, 0, 0)
+            };
+
+            votosColumna2 = new Label
+            {
+                Content = sumaVotos2.ToString(),
+                Foreground = Brushes.Black,
+                FontWeight = FontWeights.Bold,
+                Margin = new Thickness(pnlResultados.ActualWidth - pnlResultados.ActualWidth/4, pnlResultados.ActualHeight, 0, 0)
+            };
+
+            pnlResultados.Children.Add(votosColumna);
+            pnlResultados.Children.Add(votosColumna2);
 
             pnlResultados.Children.Add(grid);
         }
@@ -436,12 +464,55 @@ namespace pactometro
                 {
                     panel1.Children.Remove(rectangulo);
                     panel2.Children.Insert(0, rectangulo);
+
+                    ActualizarSumas(rectangulo, restar: true);
+
                 } else
                 {
                     panel2.Children.Remove(rectangulo);
                     panel1.Children.Insert(0, rectangulo);
+
+                    ActualizarSumas(rectangulo, restar: false);
                 }
             }
+        }
+
+        private void ActualizarSumas(Rectangle rectangulo, bool restar)
+        {
+            // Obtiene los votos del partido asociado al rectángulo
+            int votosPartido = ObtenerVotosDesdeRectangulo(rectangulo);
+
+            if (restar)
+            {
+                sumaVotos -= votosPartido;
+                sumaVotos2 += votosPartido;
+            }
+            else
+            {
+                sumaVotos += votosPartido;
+                sumaVotos2 -= votosPartido;
+            }
+
+            // Actualiza los Labels con las nuevas sumas
+            votosColumna.Content = sumaVotos.ToString();
+            votosColumna2.Content = sumaVotos2.ToString();
+        }
+
+        private int ObtenerVotosDesdeRectangulo(Rectangle rectangulo)
+        {
+            if (rectangulo.ToolTip is string toolTipString)
+            {
+                string[] partesToolTip = toolTipString.Split(' ');
+                if (partesToolTip.Length >= 4 && partesToolTip[2] == "Votos:")
+                {
+                    if (int.TryParse(partesToolTip[3], out int votos))
+                    {
+                        return votos;
+                    }
+                }
+            }
+
+            return -1;
         }
     }
 }
