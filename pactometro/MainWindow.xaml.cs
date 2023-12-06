@@ -356,7 +356,7 @@ namespace pactometro
             // Ajusta el ancho de los rectángulos según el espacio disponible
             double rectangleWidth = canvasWidth / 4;
 
-            double k = (pnlResultados.ActualHeight * 0.3) / maxVotos;
+            double k = (pnlResultados.ActualHeight * 0.5) / eleccion.totalEscanios;
 
             Grid grid = new Grid();
             grid.ColumnDefinitions.Add(new ColumnDefinition());
