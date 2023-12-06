@@ -371,8 +371,8 @@ namespace pactometro
                 Width = pnlResultados.ActualWidth,
                 X1 = 0,
                 X2 = pnlResultados.ActualWidth,
-                Y1 = canvasHeight / 2 + 5, //ver dónde colocar la línea para que cumpla la mayoria absoluta
-                Y2 = canvasHeight / 2 + 5
+                Y1 = mayoriaAbsoluta * k,
+                Y2 = mayoriaAbsoluta * k
 
             };
             Grid.SetColumnSpan(line, 2);
@@ -383,7 +383,7 @@ namespace pactometro
                 Content = mayoriaAbsoluta.ToString(),
                 Foreground = Brushes.Black,
                 FontWeight = FontWeights.Bold,
-                Margin = new Thickness(0, canvasHeight / 2, 0, 0)
+                Margin = new Thickness(0, mayoriaAbsoluta * k, 0, 0)
             };
             Grid.SetColumn(num, 0);
 
@@ -392,12 +392,12 @@ namespace pactometro
 
             panel1 = new StackPanel();
             panel1.Width = grid.Width / 2;
-            panel1.Height = grid.Height / 2;
+            panel1.Height = grid.Height;
             Grid.SetColumn(panel1, 0);
 
             panel2 = new StackPanel();
             panel2.Width = grid.Width / 2;
-            panel2.Height = grid.Height / 2;
+            panel2.Height = grid.Height;
             Grid.SetColumn(panel2, 1);
 
             grid.Children.Add(panel1);
