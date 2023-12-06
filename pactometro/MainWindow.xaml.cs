@@ -355,9 +355,6 @@ namespace pactometro
 
             double mayoriaAbsoluta = eleccion.calculaMayoria(eleccion.totalEscanios);
 
-            int numberOfRectangles = eleccion.listaPartidos.Count;
-            int maxVotos = eleccion.obtenerMaxVotos();
-
             double minWidth = 100;
             double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
             double canvasHeight = pnlResultados.ActualHeight;
@@ -429,9 +426,15 @@ namespace pactometro
 
                 rectangulo.MouseLeftButtonDown += Rectangulo_MouseLeftButtonDown;
 
-                panel1.Children.Insert(0, rectangulo);
-
-                sumaVotos += partido.votos;
+                if(partido.votos >= mayoriaAbsoluta)
+                {
+                    panel2.Children.Insert(0, rectangulo);
+                    sumaVotos2 += partido.votos;
+                } else {
+                    panel1.Children.Insert(0, rectangulo);
+                    sumaVotos += partido.votos;
+                }
+                
             }
 
             votosColumna = new Label
@@ -479,7 +482,6 @@ namespace pactometro
 
         private void ActualizarSumas(Rectangle rectangulo, bool restar)
         {
-            // Obtiene los votos del partido asociado al rectángulo
             int votosPartido = ObtenerVotosDesdeRectangulo(rectangulo);
 
             if (restar)
@@ -493,7 +495,6 @@ namespace pactometro
                 sumaVotos2 -= votosPartido;
             }
 
-            // Actualiza los Labels con las nuevas sumas
             votosColumna.Content = sumaVotos.ToString();
             votosColumna2.Content = sumaVotos2.ToString();
         }
