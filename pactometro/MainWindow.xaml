@@ -28,12 +28,10 @@
             </Menu>
 
             <Label Name="titulo" Content="EL PACTÓMETRO" Grid.Row="1" HorizontalAlignment="Center" FontSize="20" FontWeight="Black"/>
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <Canvas Name="pnlResultados" Grid.Row="1" Margin="35" Background="MintCream">
+            <Canvas Name="pnlResultados" Grid.Row="1" Margin="35" Background="MintCream">
 
-                </Canvas>
-            </ScrollViewer>
-        </Grid>
+            </Canvas>
+    </Grid>
 
 
 </Window>
