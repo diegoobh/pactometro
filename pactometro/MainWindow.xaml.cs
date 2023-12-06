@@ -65,6 +65,7 @@ namespace pactometro
             switch (clicked)
             {
                 case 0:
+                    mainWindow.MinWidth = 500;
                     if (ventana2.upperTable.SelectedItem == null)
                     {
                         titulo.Content = "EL PACTÓMETRO";
@@ -78,6 +79,7 @@ namespace pactometro
                     break; 
                 case 1:
                     titulo.Content = "COMPARADOR ELECCIONES";
+                    mainWindow.MinWidth = 800;
                     if (listaElecciones.Count == 0) 
                     { 
                         pnlResultados.Children.Clear();
@@ -101,6 +103,7 @@ namespace pactometro
                     }                  
                     break; 
                 case 2:
+                    mainWindow.MinWidth = 500;
                     if (ventana2.upperTable.SelectedItem == null)
                     {
                         eleccion = (Eleccion)ventana2.upperTable.Items[0];
@@ -205,6 +208,9 @@ namespace pactometro
             ventana2.Close(); 
         }
 
+/*------------------------*/
+/*FUNCIONALIDAD ELECCIONES*/
+/*------------------------*/
         public void mostrarEleccion(Eleccion eleccion)
         {
             pnlResultados.Children.Clear();
@@ -212,13 +218,13 @@ namespace pactometro
             int maxVotos = eleccion.obtenerMaxVotos();
             int offsetInicial = 10;
 
-            int numberOfRectangles = eleccion.listaPartidos.Count();
+            int numpartidos = eleccion.listaPartidos.Count();
             double minWidth = 100;
             double canvasWidth = Math.Max(minWidth, pnlResultados.ActualWidth);
             double canvasHeight = pnlResultados.ActualHeight;
-            double spaceBetweenRectangles = 10;
+            double espaciado = 10;
             // Ajusta el ancho de los rectángulos según el espacio disponible
-            double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;           
+            double rectangleWidth = (canvasWidth - (numpartidos - 1) * espaciado - 2 * offsetInicial) / numpartidos;           
 
             double x = offsetInicial; 
             double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
@@ -251,7 +257,7 @@ namespace pactometro
                         MaxWidth = rectangleWidth
                     };
 
-                    x += rectangleWidth + spaceBetweenRectangles;
+                    x += rectangleWidth + espaciado;
 
                     pnlResultados.Children.Add(rectangulo);
                     pnlResultados.Children.Add(textBlock); 
@@ -265,12 +271,16 @@ namespace pactometro
 
         }
 
+/*------------------------*/
+/*FUNCIONALIDAD COMPARADOR*/
+/*------------------------*/
+
         public void mostrarHistorico(Collection<Eleccion> listaElecciones)
         {
             pnlResultados.Children.Clear();
     
             double offsetInicial = 10;
-            int numberOfRectangles = 0;
+            int numpartidos = 0;
             int maxVotos = -9999;
             double xInicial = offsetInicial;
 
@@ -283,7 +293,7 @@ namespace pactometro
                     {
                         maxVotos = eleccion.obtenerMaxVotos();
                     }
-                    numberOfRectangles += eleccion.listaPartidos.Count();
+                    numpartidos += eleccion.listaPartidos.Count();
                 }
 
                 double minWidth = 100;
@@ -291,7 +301,7 @@ namespace pactometro
                 double canvasHeight = pnlResultados.ActualHeight;
                 double spaceBetweenRectangles = 10;
                 // Ajusta el ancho de los rectángulos según el espacio disponible
-                double rectangleWidth = (canvasWidth - (numberOfRectangles - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numberOfRectangles;
+                double rectangleWidth = (canvasWidth - (numpartidos - 1) * spaceBetweenRectangles - 2 * offsetInicial) / numpartidos;
 
                 double x = xInicial;
                 double k = (pnlResultados.ActualHeight * 0.9) / maxVotos;
@@ -345,6 +355,10 @@ namespace pactometro
             }
   
         }
+
+/*------------------------*/
+/*FUNCIONALIDAD PACTÓMETRO*/
+/*------------------------*/
 
         public void mostrarPactometro(Eleccion eleccion)
         {
@@ -482,7 +496,11 @@ namespace pactometro
 
         private void ActualizarSumas(Rectangle rectangulo, bool restar)
         {
+
             int votosPartido = ObtenerVotosDesdeRectangulo(rectangulo);
+            if (votosPartido == -1){
+                MessageBox.Show("Error al obtener votos del partido.");
+            }
 
             if (restar)
             {

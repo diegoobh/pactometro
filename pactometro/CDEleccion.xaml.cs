@@ -71,7 +71,6 @@ namespace pactometro
             } else {
                 MessageBox.Show("Introduzca los datos de la elección primero.");
             }
-
         }
 
         private void txtEleccion_TextChanged(object sender, TextChangedEventArgs e)

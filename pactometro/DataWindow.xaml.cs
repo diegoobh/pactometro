@@ -73,8 +73,7 @@ namespace pactometro
                     default: 
                         vPrincipal.titulo.Content = "EL PACTÓMETRO";
                         break;
-                }
-                 
+                }  
             }
         }
 
@@ -95,13 +94,14 @@ namespace pactometro
             upperTable.Items.Refresh();
             vPrincipal.pnlResultados.Children.Clear();
 
-           /* foreach (MenuItem item in vPrincipal.cmpProcesos.Items)
-            {
-                if (item.Header.ToString() == elect.nombreEleccion)
-                {
-                    vPrincipal.cmpProcesos.Items.Remove(item); //eliminar el proceso electoral del menú de procesos (no funciona)
-                }
-            }*/
+            //eliminar el proceso electoral del menú de procesos (no funciona)
+            /* foreach (MenuItem item in vPrincipal.cmpProcesos.Items)
+             {
+                 if (item.Header.ToString() == elect.nombreEleccion)
+                 {
+                     vPrincipal.cmpProcesos.Items.Remove(item); 
+                 }
+             }*/
         }
     }
 }

@@ -96,10 +96,10 @@ namespace pactometro
             elecciones[0].listaPartidos[5].nombre = "JUNTS";
             elecciones[0].listaPartidos[5].votos = 7;
             elecciones[0].listaPartidos[5].color = "lightBlue";
-            elecciones[0].listaPartidos[6].nombre = "EH BILDU";
+            elecciones[0].listaPartidos[6].nombre = "BILDU";
             elecciones[0].listaPartidos[6].votos = 6;
             elecciones[0].listaPartidos[6].color = "lightGreen";
-            elecciones[0].listaPartidos[7].nombre = "EAJ_PNV";
+            elecciones[0].listaPartidos[7].nombre = "PNV";
             elecciones[0].listaPartidos[7].votos = 5;
             elecciones[0].listaPartidos[7].color = "Green";
             elecciones[0].listaPartidos[8].nombre = "BNG";
@@ -142,10 +142,10 @@ namespace pactometro
             elecciones[1].listaPartidos[6].nombre = "JUNTS";
             elecciones[1].listaPartidos[6].votos = 8;
             elecciones[1].listaPartidos[6].color = "Pink";
-            elecciones[1].listaPartidos[7].nombre = "EAJ_PNV";
+            elecciones[1].listaPartidos[7].nombre = "PNV";
             elecciones[1].listaPartidos[7].votos = 6;
             elecciones[1].listaPartidos[7].color = "Green";
-            elecciones[1].listaPartidos[8].nombre = "EH BILDU";
+            elecciones[1].listaPartidos[8].nombre = "BILDU";
             elecciones[1].listaPartidos[8].votos = 5;
             elecciones[1].listaPartidos[8].color = "LightGreen";
             elecciones[1].listaPartidos[9].nombre = "MASPAIS";
@@ -156,7 +156,7 @@ namespace pactometro
             elecciones[1].listaPartidos[10].color = "Yellow";
             elecciones[1].listaPartidos[11].nombre = "CCA";
             elecciones[1].listaPartidos[11].votos = 2;
-            elecciones[1].listaPartidos[11].color = "Orange";
+            elecciones[1].listaPartidos[11].color = "SkyBlue";
             elecciones[1].listaPartidos[12].nombre = "BNG";
             elecciones[1].listaPartidos[12].votos = 1;
             elecciones[1].listaPartidos[12].color = "LightSkyBlue";

@@ -32,7 +32,7 @@ namespace pactometro
 
         public override String ToString()
         {
-            return nombre + " " + votos; //no queremos que se nos muestre el color del partido
+            return nombre + " " + votos;
         }
     }
 }
